@@ -1,0 +1,22 @@
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local scratch — keep working files out of the repo
+/tmp/
+*.log
+*.bak
+*.orig
+
+# Python (if you use the local preview server or helper scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/

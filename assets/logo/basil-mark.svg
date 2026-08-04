@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="BASIL laboratory mark">
+  <title>BASIL</title>
+  <!--
+    Leaf  = plant-wax biomarkers (the material the lab works on)
+    Bands = sediment stratigraphy (the archive they come from)
+    Ring  = a molecular ring, for organic geochemistry
+
+    Single flat colour. Change #96341F below to recolour, or set
+    fill/stroke to "currentColor" if you inline this in HTML.
+  -->
+  <defs>
+    <clipPath id="basil-leaf-clip">
+      <path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#basil-leaf-clip)">
+    <rect x="0" y="40" width="64" height="2.4" fill="#96341F" opacity=".28"/>
+    <rect x="0" y="46" width="64" height="2.4" fill="#96341F" opacity=".18"/>
+  </g>
+
+  <path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z"
+        fill="none" stroke="#96341F" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M32 12v46" stroke="#96341F" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+  <path d="M32 28.5 40.5 33.4v9.7L32 48l-8.5-4.9v-9.7Z"
+        fill="#FFFFFF" stroke="#96341F" stroke-width="3" stroke-linejoin="round"/>
+</svg>

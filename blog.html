@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  BASIL - Biomarkers and Stable Isotope Laboratory
+  Department of Applied Geology, IIT (ISM) Dhanbad
+
+  PAGE: Highlights - one .blog-card block per article
+
+  HOW TO EDIT THIS PAGE
+  ---------------------
+  * Everything a visitor reads lives between <main> and </main> below.
+  * The header/nav and footer are repeated on every page. If you change them,
+    change them in ALL .html files (see README.md -> "Editing the navigation").
+  * Styling lives in assets/css/style.css - colours are set once at the top.
+  * Publications are DATA, not markup: edit assets/js/publications.js.
+  * See README.md in the project root for step-by-step instructions.
+  ============================================================================
+-->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Highlights | BASIL | IIT (ISM) Dhanbad</title>
+
+  <!-- SEO & academic metadata -->
+  <meta name="description" content="Research highlights and article summaries from BASIL.">
+  <meta name="keywords" content="BASIL, Biomarkers and Stable Isotope Laboratory, Deepak Kumar Jha, geoarchaeology, leaf wax biomarkers, n-alkanes, stable isotopes, Quaternary climate, IIT ISM Dhanbad, fire ecology, Belan Valley">
+  <meta name="author" content="BASIL - Biomarkers and Stable Isotope Laboratory, IIT (ISM) Dhanbad">
+
+  <!-- Link preview (WhatsApp, X, LinkedIn) -->
+  <meta property="og:title" content="Highlights | BASIL | IIT (ISM) Dhanbad">
+  <meta property="og:description" content="Research highlights and article summaries from BASIL.">
+  <meta property="og:image" content="assets/images/deepak_jha_hero.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: Source Serif 4 (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Marks that JavaScript is available, before the page paints, so the
+       scroll animations never leave content invisible if JS is switched off. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- ==== HEADER / NAVIGATION (same on every page) ==================== -->
+  <header class="header-nav" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><clipPath id="basilLeaf"><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z"/></clipPath></defs><g clip-path="url(#basilLeaf)"><rect x="0" y="40" width="64" height="2.4" fill="currentColor" opacity=".28"/><rect x="0" y="46" width="64" height="2.4" fill="currentColor" opacity=".18"/></g><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M32 12v46" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".5"/><path d="M32 28.5 40.5 33.4v9.7L32 48l-8.5-4.9v-9.7Z" fill="var(--paper, #fff)" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+        <div class="brand-text">
+          <span class="brand-name">BASIL</span>
+          <span class="brand-sub">Biomarkers &amp; Stable Isotope Laboratory</span>
+        </div>
+      </a>
+
+      <div class="nav-menu">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="research.html" class="nav-link">Research</a></li>
+          <li><a href="team.html" class="nav-link">People</a></li>
+          <li><a href="publications.html" class="nav-link">Publications</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+          <li><a href="blog.html" class="nav-link active">Highlights</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle light or dark theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+  </header>
+
+  <!-- ==== PAGE CONTENT =============================================== -->
+  <main class="page-main">
+<section class="blog-section" id="blog">
+    <div class="container">
+      <div class="section-header" data-reveal="left">
+        <div>
+          <span class="section-kicker">Research Insights</span>
+          <h2 class="section-title">Research Blog &amp; Articles</h2>
+        </div>
+      </div>
+
+      <div class="blog-grid">
+        <article class="blog-card" data-reveal="left">
+          <div class="blog-img-wrap">
+            <img src="assets/images/article_fire.jpg" alt="Controlled Use of Fire" class="blog-img">
+          </div>
+          <div class="blog-content">
+            <span class="blog-tag">Fire Ecology</span>
+            <h3>First Evidence of Controlled Fire Usage in Middle Palaeolithic India</h3>
+            <p>Combining macro-charcoal counts and polycyclic aromatic hydrocarbon (PAH) diagnostic ratios from Belan Valley archaeological strata to establish early human fire management.</p>
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-newspaper"></i> Palaeogeography, Palaeoclimatology, Palaeoecology</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-reveal="left">
+          <div class="blog-img-wrap">
+            <img src="assets/images/article_quaternary.jpg" alt="Quaternary Climate" class="blog-img">
+          </div>
+          <div class="blog-content">
+            <span class="blog-tag">Past Climate</span>
+            <h3>Multi-Proxy Record of Quaternary Climate &amp; Vegetation Shifts</h3>
+            <p>Reconstructing C<sub>3</sub> forest vs. C<sub>4</sub> tropical grass transitions in North-Central India using compound-specific stable carbon isotope analysis of plant wax <i>n</i>-alkanes.</p>
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-newspaper"></i> Quaternary Science Reviews</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="blog-card" data-reveal="left">
+          <div class="blog-img-wrap">
+            <img src="assets/images/article_ashtamudi.jpg" alt="Ashtamudi Estuary" class="blog-img">
+          </div>
+          <div class="blog-content">
+            <span class="blog-tag">Monsoon Proxy</span>
+            <h3>Molecular &amp; Carbon Isotope Characterization of Ashtamudi Estuary</h3>
+            <p>Evaluating organic matter sources, terrestrial leaf-wax chain lengths, and hydrological changes during the Middle-to-Late Holocene in Southwest India.</p>
+            <div class="blog-meta">
+              <span><i class="fa-regular fa-newspaper"></i> Marine Chemistry</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ==== FOOTER (same on every page) ================================ -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>BASIL &middot; Department of Applied Geology, IIT (ISM) Dhanbad</p>
+      <p>&copy; 2021&ndash;2026 Deepak Jha. All rights reserved.</p>
+      <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
+    </div>
+  </footer>
+
+  <button class="scroll-top-fab" id="scroll-top-fab" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Publication data first, then the behaviour that renders it -->
+  <script src="assets/js/publications.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

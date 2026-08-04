@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  BASIL - Biomarkers and Stable Isotope Laboratory
+  Department of Applied Geology, IIT (ISM) Dhanbad
+
+  PAGE: Facilities - one .facility-card block per instrument
+
+  HOW TO ADD AN INSTRUMENT
+  ------------------------
+  1. Copy one whole <article class="facility-card"> ... </article> block.
+  2. Paste it inside <div class="facilities-grid">.
+  3. Change the photo, name, model and description.
+  4. Put the photo in assets/images/ first (roughly 1200px wide is plenty).
+
+  Blocks that are commented out below are ready-made templates - delete the
+  <!-- and --> around one to switch it on.
+  ============================================================================
+-->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facilities | BASIL | IIT (ISM) Dhanbad</title>
+
+  <!-- SEO & academic metadata -->
+  <meta name="description" content="Laboratory instrumentation and field monitoring facilities of BASIL, the Biomarkers and Stable Isotope Laboratory at IIT (ISM) Dhanbad.">
+  <meta name="keywords" content="BASIL, laboratory facilities, GC-MS, stable isotope laboratory, rain gauge, IIT ISM Dhanbad, biomarker analysis">
+  <meta name="author" content="BASIL - Biomarkers and Stable Isotope Laboratory, IIT (ISM) Dhanbad">
+
+  <!-- Link preview (WhatsApp, X, LinkedIn) -->
+  <meta property="og:title" content="Facilities | BASIL | IIT (ISM) Dhanbad">
+  <meta property="og:description" content="Laboratory instrumentation and field monitoring facilities of BASIL at IIT (ISM) Dhanbad.">
+  <meta property="og:image" content="assets/images/deepak_jha_hero.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: Source Serif 4 (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Marks that JavaScript is available, before the page paints, so the
+       scroll animations never leave content invisible if JS is switched off. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- ==== HEADER / NAVIGATION (same on every page) ==================== -->
+  <header class="header-nav" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><clipPath id="basilLeaf"><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z"/></clipPath></defs><g clip-path="url(#basilLeaf)"><rect x="0" y="40" width="64" height="2.4" fill="currentColor" opacity=".28"/><rect x="0" y="46" width="64" height="2.4" fill="currentColor" opacity=".18"/></g><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M32 12v46" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".5"/><path d="M32 28.5 40.5 33.4v9.7L32 48l-8.5-4.9v-9.7Z" fill="var(--paper, #fff)" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+        <div class="brand-text">
+          <span class="brand-name">BASIL</span>
+          <span class="brand-sub">Biomarkers &amp; Stable Isotope Laboratory</span>
+        </div>
+      </a>
+
+      <div class="nav-menu">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="research.html" class="nav-link">Research</a></li>
+          <li><a href="team.html" class="nav-link">People</a></li>
+          <li><a href="publications.html" class="nav-link">Publications</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="facilities.html" class="nav-link active">Facilities</a></li>
+          <li><a href="blog.html" class="nav-link">Highlights</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle light or dark theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+  </header>
+
+  <!-- ==== PAGE CONTENT =============================================== -->
+  <main class="page-main">
+    <section id="facilities" class="facilities-section">
+      <div class="container">
+        <div class="section-header center" data-reveal="left">
+          <span class="section-kicker">Instrumentation</span>
+          <h2 class="section-title">Laboratory Facilities</h2>
+          <p class="section-desc">Analytical instrumentation and field monitoring infrastructure supporting biomarker and stable isotope research at BASIL.</p>
+        </div>
+
+        <div class="facilities-grid">
+
+          <!-- ---- INSTRUMENT: GC-MS ---------------------------------- -->
+          <article class="facility-card" data-reveal="left">
+            <div class="facility-body">
+              <div class="facility-icon"><i class="fa-solid fa-flask-vial"></i></div>
+              <h3>Gas Chromatograph &ndash; Mass Spectrometer</h3>
+              <p class="facility-status">Being established</p>
+              <p>
+                Purchase and installation funded by the ANRF PMECRG research grant.
+                The GC-MS will support identification and quantification of leaf-wax
+                <i>n</i>-alkanes, polycyclic aromatic hydrocarbons (PAHs) and other
+                molecular biomarkers extracted from sediments and archaeological deposits.
+              </p>
+            </div>
+          </article>
+
+          <!-- ---- INSTRUMENT: Rain gauge ----------------------------- -->
+          <article class="facility-card" data-reveal="left">
+            <div class="facility-body">
+              <div class="facility-icon"><i class="fa-solid fa-cloud-rain"></i></div>
+              <h3>Automated Rain Gauge Station</h3>
+              <p class="facility-status">Operational</p>
+              <p>
+                Hosted on campus to monitor monsoon variability and to collect
+                precipitation for isotopic analysis, providing a modern reference
+                dataset against which palaeo-hydrological reconstructions can be
+                calibrated.
+              </p>
+            </div>
+          </article>
+
+          <!--
+            ---- TEMPLATE: copy this block for each new instrument ------
+            Remove the surrounding comment markers to switch it on.
+
+          <article class="facility-card" data-reveal="left">
+            <div class="facility-photo">
+              <img src="assets/images/YOUR-PHOTO.jpg" alt="Instrument name" loading="lazy">
+            </div>
+            <div class="facility-body">
+              <div class="facility-icon"><i class="fa-solid fa-microscope"></i></div>
+              <h3>Instrument name</h3>
+              <p class="facility-status">Operational</p>
+              <p>What the instrument is used for, and which analyses it supports.</p>
+            </div>
+          </article>
+          -->
+
+        </div>
+
+        <p class="facility-footnote" data-reveal="left">
+          Researchers interested in collaborative access or sample analysis are
+          welcome to <a href="contact.html">get in touch</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==== FOOTER (same on every page) ================================ -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>BASIL &middot; Department of Applied Geology, IIT (ISM) Dhanbad</p>
+      <p>&copy; 2021&ndash;2026 Deepak Jha. All rights reserved.</p>
+      <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
+    </div>
+  </footer>
+
+  <button class="scroll-top-fab" id="scroll-top-fab" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Publication data first, then the behaviour that renders it -->
+  <script src="assets/js/publications.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  BASIL - Biomarkers and Stable Isotope Laboratory
+  Department of Applied Geology, IIT (ISM) Dhanbad
+
+  PAGE: Publications - the LIST is generated from assets/js/publications.js
+
+  HOW TO EDIT THIS PAGE
+  ---------------------
+  * Everything a visitor reads lives between <main> and </main> below.
+  * The header/nav and footer are repeated on every page. If you change them,
+    change them in ALL .html files (see README.md -> "Editing the navigation").
+  * Styling lives in assets/css/style.css - colours are set once at the top.
+  * Publications are DATA, not markup: edit assets/js/publications.js.
+  * See README.md in the project root for step-by-step instructions.
+  ============================================================================
+-->
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publications | BASIL | IIT (ISM) Dhanbad</title>
+
+  <!-- SEO & academic metadata -->
+  <meta name="description" content="Peer-reviewed publications from BASIL, sourced from ORCID and Crossref.">
+  <meta name="keywords" content="BASIL, Biomarkers and Stable Isotope Laboratory, Deepak Kumar Jha, geoarchaeology, leaf wax biomarkers, n-alkanes, stable isotopes, Quaternary climate, IIT ISM Dhanbad, fire ecology, Belan Valley">
+  <meta name="author" content="BASIL - Biomarkers and Stable Isotope Laboratory, IIT (ISM) Dhanbad">
+
+  <!-- Link preview (WhatsApp, X, LinkedIn) -->
+  <meta property="og:title" content="Publications | BASIL | IIT (ISM) Dhanbad">
+  <meta property="og:description" content="Peer-reviewed publications from BASIL, sourced from ORCID and Crossref.">
+  <meta property="og:image" content="assets/images/deepak_jha_hero.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: Source Serif 4 (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Marks that JavaScript is available, before the page paints, so the
+       scroll animations never leave content invisible if JS is switched off. -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- ==== HEADER / NAVIGATION (same on every page) ==================== -->
+  <header class="header-nav" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><clipPath id="basilLeaf"><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z"/></clipPath></defs><g clip-path="url(#basilLeaf)"><rect x="0" y="40" width="64" height="2.4" fill="currentColor" opacity=".28"/><rect x="0" y="46" width="64" height="2.4" fill="currentColor" opacity=".18"/></g><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M32 12v46" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".5"/><path d="M32 28.5 40.5 33.4v9.7L32 48l-8.5-4.9v-9.7Z" fill="var(--paper, #fff)" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+        <div class="brand-text">
+          <span class="brand-name">BASIL</span>
+          <span class="brand-sub">Biomarkers &amp; Stable Isotope Laboratory</span>
+        </div>
+      </a>
+
+      <div class="nav-menu">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="research.html" class="nav-link">Research</a></li>
+          <li><a href="team.html" class="nav-link">People</a></li>
+          <li><a href="publications.html" class="nav-link active">Publications</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+          <li><a href="blog.html" class="nav-link">Highlights</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle light or dark theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+  </header>
+
+  <!-- ==== PAGE CONTENT =============================================== -->
+  <main class="page-main">
+<section class="publications-section" id="publications">
+    <div class="container">
+      <div class="section-header" data-reveal="left">
+        <div>
+          <span class="section-kicker">Peer-Reviewed Papers &amp; Talks</span>
+          <h2 class="section-title">Publications</h2>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Bar -->
+      <div class="pub-controls" data-reveal="left">
+        <div class="pub-search-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="pub-search" class="pub-search-input" placeholder="Search title, author, proxy, Toba, Belan, journal...">
+        </div>
+
+        <div class="pub-filter-group">
+          <button class="pub-type-btn active" data-type="all">All</button>
+          <button class="pub-type-btn" data-type="journal">Journal Publications (31)</button>
+          <button class="pub-type-btn" data-type="conference">Conference Talks (25)</button>
+
+          <select id="pub-year-select" class="pub-select">
+            <option value="all">All Years (2016-2026)</option>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+          </select>
+        </div>
+
+        <span id="pub-count-badge" class="pub-count-badge">56 Items Listed</span>
+      </div>
+
+      <!-- Publications List Container -->
+      <div id="publications-list" class="publications-list">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- ==== FOOTER (same on every page) ================================ -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>BASIL &middot; Department of Applied Geology, IIT (ISM) Dhanbad</p>
+      <p>&copy; 2021&ndash;2026 Deepak Jha. All rights reserved.</p>
+      <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Back to Top</a>
+    </div>
+  </footer>
+
+  <button class="scroll-top-fab" id="scroll-top-fab" aria-label="Scroll back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Publication data first, then the behaviour that renders it -->
+  <script src="assets/js/publications.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
