@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderState();
   initScrollSpy();
   initDerivedCounts();
+  initNewsMarquee();
   initScrollAnimations();
   initCounters();
   initGalleryLightbox();
@@ -232,6 +233,39 @@ function initScrollAnimations() {
       }
     });
   });
+}
+
+// --------------------------------------------------------------------------
+// 7-B. News Ticker
+// Clones the cards once so the track can slide -50% and loop seamlessly,
+// then sets the duration from the real width to keep the speed constant
+// however many updates are listed.
+// --------------------------------------------------------------------------
+function initNewsMarquee() {
+  const marquee = document.getElementById('news-marquee');
+  const track = document.getElementById('news-track');
+  if (!marquee || !track) return;
+
+  const cards = Array.from(track.children);
+  if (!cards.length) return;
+
+  if (PREFERS_REDUCED_MOTION) return;   // CSS falls back to a scrollable row
+
+  // Duplicate for the seamless loop; the copies are decorative only
+  cards.forEach(card => {
+    const copy = card.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    track.appendChild(copy);
+  });
+
+  // ~70 pixels per second, so more cards means a longer cycle, not a faster one
+  const setSpeed = () => {
+    const distance = track.scrollWidth / 2;
+    track.style.setProperty('--marquee-duration', `${Math.max(20, distance / 70)}s`);
+  };
+
+  setSpeed();
+  window.addEventListener('resize', setSpeed, { passive: true });
 }
 
 // --------------------------------------------------------------------------

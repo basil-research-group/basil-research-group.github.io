@@ -754,10 +754,50 @@ section {
   color: var(--accent);
 }
 
-.news-list-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* ---- News ticker --------------------------------------------------------
+   The track holds the cards twice (the second set is cloned by app.js), so
+   sliding it exactly -50% loops seamlessly with no visible jump. ---------- */
+.news-marquee {
+  position: relative;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  padding: 0.25rem 0;
+  /* soften both ends so cards fade out instead of being sliced off */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+
+.news-track {
+  display: flex;
   gap: 1rem;
+  width: max-content;
+  animation: news-scroll var(--marquee-duration, 45s) linear infinite;
+}
+
+/* Pause when the reader wants to actually read one */
+.news-marquee:hover .news-track,
+.news-marquee:focus-within .news-track {
+  animation-play-state: paused;
+}
+
+.news-track .news-item-card {
+  flex: 0 0 320px;
+  width: 320px;
+}
+
+@keyframes news-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* No motion: fall back to a normal swipeable row */
+@media (prefers-reduced-motion: reduce) {
+  .news-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .news-track { animation: none; }
 }
 
 .news-item-card {
