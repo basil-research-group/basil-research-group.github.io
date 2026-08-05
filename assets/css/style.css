@@ -1500,6 +1500,124 @@ a.stat-box:focus-visible {
 .blog-meta i { color: var(--accent); }
 
 
+
+/* --------------------------------------------------------------------------
+   Featured story + press coverage (Achievements page)
+   -------------------------------------------------------------------------- */
+.feature-section {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 760px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+
+.feature-figure {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.feature-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.feature-figure figcaption {
+  margin-top: 0.7rem;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.press-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+
+.press-heading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+}
+
+/* Clippings are contained, never cropped - a sliced headline is unreadable */
+.press-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.press-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  color: inherit;
+}
+
+.press-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  object-position: center top;
+  background: var(--paper-2);
+  border-radius: 3px;
+}
+
+.press-outlet {
+  margin-top: 0.7rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1.35;
+}
+
+.press-date {
+  margin-top: 0.15rem;
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
 /* --------------------------------------------------------------------------
    News & Media (Achievements page)
    Press coverage grouped under the paper it reports on.
