@@ -32,6 +32,8 @@
   --font-heading: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-label:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Slab serif, used only for the BASIL wordmark in the header */
+  --font-brand:   'Bitter', 'Source Serif 4', Georgia, serif;
 
   /* Shadows — warm, low-spread */
   --shadow-sm: 0 1px 2px rgba(35, 24, 15, 0.05);
@@ -307,41 +309,45 @@ section {
 
 /* Leaf + molecular ring mark; inherits the accent colour in both themes */
 .brand-mark {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   color: var(--accent);
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-normal), width var(--transition-normal), height var(--transition-normal);
 }
 
 .brand-logo:hover .brand-mark { transform: rotate(-6deg) scale(1.06); }
 
-.header-nav.scrolled .brand-mark { width: 30px; height: 30px; }
+.header-nav.scrolled .brand-mark { width: 34px; height: 34px; }
 
 .brand-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.25;
+  gap: 0.1rem;
 }
 
 .brand-name {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-family: var(--font-brand);
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--ink);
-  letter-spacing: 0.04em;
-  transition: color var(--transition-fast);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  transition: color var(--transition-fast), font-size var(--transition-normal);
 }
+
+.header-nav.scrolled .brand-name { font-size: 1.5rem; }
 
 .brand-logo:hover .brand-name { color: var(--accent); }
 
 .brand-sub {
   font-family: var(--font-label);
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   color: var(--ink-3);
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .nav-menu {
@@ -2073,9 +2079,19 @@ section {
 /* --------------------------------------------------------------------------
    17. Responsive
    -------------------------------------------------------------------------- */
+/* The BASIL wordmark is wide, so tighten the nav before dropping anything */
+@media (max-width: 1250px) {
+  .nav-menu { gap: 1rem; }
+  .nav-links { gap: 0.85rem; }
+  .nav-link { font-size: 0.8rem; }
+  .brand-name { font-size: 1.55rem; }
+  .brand-sub { font-size: 0.55rem; letter-spacing: 0.07em; }
+}
+
+/* Below this the strapline no longer fits alongside nine nav items */
 @media (max-width: 1100px) {
-  .nav-links { gap: 1rem; }
-  .nav-link { font-size: 0.83rem; }
+  .nav-links { gap: 0.75rem; }
+  .nav-link { font-size: 0.78rem; }
   .brand-sub { display: none; }
 }
 

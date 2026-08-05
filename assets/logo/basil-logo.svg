@@ -4,8 +4,9 @@
     Horizontal lockup: mark + wordmark. Use this one on letterheads,
     posters and slide decks. For a favicon or avatar use basil-mark.svg.
 
-    The wordmark is drawn as text in Source Serif 4 with a system serif
-    fallback, so it still renders if the font is unavailable.
+    The wordmark is set in Bitter (the same slab serif the site header uses)
+    with a system serif fallback, so it still renders if the font is
+    unavailable.
   -->
   <g transform="translate(4 4)">
     <g clip-path="url(#basil-leaf-clip-2)">
@@ -25,8 +26,8 @@
   </g>
 
   <text x="86" y="34"
-        font-family="'Source Serif 4', Georgia, 'Times New Roman', serif"
-        font-size="30" font-weight="700" letter-spacing="3" fill="#23180F">BASIL</text>
+        font-family="Bitter, 'Source Serif 4', Georgia, serif"
+        font-size="32" font-weight="700" letter-spacing="2.4" fill="#23180F">BASIL</text>
 
   <text x="88" y="52"
         font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
