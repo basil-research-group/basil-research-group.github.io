@@ -292,8 +292,11 @@ section {
 /* ---- Row 1: BASIL lockup on the left, host institution on the right ----
    Two rows rather than one, because the full IIT (ISM) lockup, the BASIL
    strapline and nine nav items cannot share a single 1140px bar. ------- */
+/* Row 1 is a solid accent band; everything inside it flips to the light
+   ink so it reads against the red. */
 .brand-bar {
-  border-bottom: 1px solid var(--line);
+  background: var(--accent);
+  border-bottom: 1px solid var(--accent-hover);
 }
 
 .brand-bar-inner {
@@ -322,7 +325,7 @@ section {
   display: block;
   height: 46px;
   aspect-ratio: 725 / 169;
-  background: url('../images/iitism_logo_brick.png') center / contain no-repeat;
+  background: url('../images/iitism_logo_onred.png') center / contain no-repeat;
   transition: height var(--transition-normal), opacity var(--transition-fast);
 }
 
@@ -330,11 +333,14 @@ section {
   width: 48px;
   height: 48px;
   flex-shrink: 0;
-  color: var(--accent);
+  color: var(--on-accent);
   transition: transform var(--transition-normal), width var(--transition-normal), height var(--transition-normal);
 }
 
 .brand-logo:hover .brand-mark { transform: rotate(-6deg) scale(1.06); }
+
+/* Cut-out at the centre of the leaf: fill it with the band colour */
+.brand-mark-core { fill: var(--accent); }
 
 .header-nav.scrolled .brand-mark { width: 40px; height: 40px; }
 
@@ -348,7 +354,7 @@ section {
   font-family: var(--font-brand);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--on-accent);
   letter-spacing: 0.05em;
   line-height: 1;
   transition: color var(--transition-fast), font-size var(--transition-normal);
@@ -356,13 +362,13 @@ section {
 
 .header-nav.scrolled .brand-name { font-size: 1.5rem; }
 
-.brand-logo:hover .brand-name { color: var(--accent); }
+.brand-logo:hover .brand-name { color: #FFFFFF; }
 
 .brand-sub {
   font-family: var(--font-label);
   white-space: nowrap;
   font-size: 0.6rem;
-  color: var(--ink-3);
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
