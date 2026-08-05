@@ -1178,13 +1178,14 @@ section {
   .facility-card--wide { grid-column: span 1; }
 }
 
-/* Collage: one large frame on the left, two stacked on the right */
+/* Collage: equal tiles side by side, each the same size whatever the
+   source photo's shape (object-fit crops rather than letterboxes). */
 .facility-collage {
   display: grid;
-  grid-template-columns: 1.45fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   gap: 3px;
-  height: 260px;
+  height: 215px;
   background: var(--line);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
@@ -1193,17 +1194,43 @@ section {
 .facility-collage img {
   width: 100%;
   height: 100%;
+  min-width: 0;                 /* let grid tracks share width evenly */
   object-fit: cover;
+  object-position: center;
   background: var(--surface-2);
   transition: transform 0.55s var(--ease-pop);
 }
 
-.facility-collage img:first-child { grid-row: 1 / 3; }
-
 .facility-card:hover .facility-collage img { transform: scale(1.04); }
 
-@media (max-width: 520px) {
-  .facility-collage { height: 200px; }
+@media (max-width: 620px) {
+  .facility-collage { height: 150px; }
+}
+
+/* A diagram, unlike a photo, must be shown whole - so it is contained
+   rather than cropped, on a plain backdrop, with a caption saying so. */
+.facility-diagram {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 1rem 0.75rem;
+}
+
+.facility-diagram img {
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.facility-diagram figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: center;
 }
 
 .facility-photo {
