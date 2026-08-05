@@ -79,7 +79,7 @@ top of the list, and change the fields:
     id: 36,                                  // any unique number
     type: "journal",                         // "journal" | "conference" | "thesis"
     year: 2026,
-    authors: "Surname, A.B., Jha, D.K.",
+    authors: ["Surname, A.B.", "Jha, D.K."],  // one quoted name each
     title: "Title of the paper",
     journal: "Quaternary Science Reviews",
     details: "325, 108480",                  // volume(issue), pages
@@ -88,7 +88,10 @@ top of the list, and change the fields:
   },
 ```
 
-Keep the commas between blocks. Leave a field as `""` if you don't have it.
+Keep the commas between blocks. Leave a field as `""` if you don't have it
+(or `[]` for authors). Names go one per quoted string so the site can tell
+them apart — group members are highlighted automatically via `GROUP_AUTHORS`
+at the top of `app.js`.
 
 **You never need to update any counts.** The filter buttons, the year
 dropdown and the tiles on the home page all count this list themselves.
@@ -166,8 +169,8 @@ Everything lives in the first 90 lines of **`assets/css/style.css`**:
 }
 ```
 
-Change a value once and it updates everywhere. The block underneath,
-`[data-theme="dark"]`, is the dark-mode equivalent — change both.
+Change a value once and it updates everywhere. The site is light-only, so
+there is a single set of colours to keep track of.
 
 Fonts are `--font-heading` and `--font-body` in the same block. If you swap
 in a different font, update the Google Fonts `<link>` in the `<head>` of
@@ -233,8 +236,6 @@ provider add a `CNAME` record pointing it to `YOUR-USERNAME.github.io`.
 - **Animations degrade safely.** Content slides in as you scroll, but if
   JavaScript is off, everything is simply visible. It also respects the
   operating system's "reduce motion" setting.
-- **Dark mode** follows the visitor's system setting on first visit, and
-  remembers the toggle after that.
 - **Images aren't optimised automatically.** Resize before adding: about
   1800px on the long edge is more than enough for full-width photos.
 - **Keep the quote marks and commas** in `publications.js`. A missing comma

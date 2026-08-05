@@ -69,31 +69,6 @@
   --text-heading: var(--ink);
 }
 
-/* Dark theme — warm dark earth, same brick accent family */
-[data-theme="dark"] {
-  --paper:        #17110D;
-  --paper-2:      #1D1611;
-  --surface:      #241B15;
-  --surface-2:    #2E231B;
-  --line:         #3E2F24;
-  --line-strong:  #55402F;
-
-  --ink:          #F5EDE3;
-  --ink-2:        #DCCBBA;
-  --ink-3:        #A8917C;
-
-  --accent:       #E28B70;
-  --accent-hover: #F0A891;
-  --accent-tint:  #2E1B14;
-  --on-accent:    #1A0E08;
-
-  --bg-glass: rgba(23, 17, 13, 0.88);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 6px 18px -6px rgba(0, 0, 0, 0.65);
-  --shadow-lg: 0 18px 40px -12px rgba(0, 0, 0, 0.75);
-}
-
 /* --------------------------------------------------------------------------
    2. Reset & Base Typography
    -------------------------------------------------------------------------- */
@@ -351,14 +326,6 @@ section {
   transition: height var(--transition-normal), opacity var(--transition-fast);
 }
 
-[data-theme="dark"] .brand-inst-mark {
-  background-image: url('../images/iitism_logo_light.png');
-}
-
-.brand-inst:hover .brand-inst-mark { opacity: 0.75; }
-
-.header-nav.scrolled .brand-inst-mark { height: 36px; }
-
 .brand-mark {
   width: 48px;
   height: 48px;
@@ -448,28 +415,6 @@ section {
   align-items: center;
   gap: 0.65rem;
 }
-
-.theme-toggle-btn {
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  color: var(--accent);
-  width: 38px;
-  height: 38px;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-}
-
-.theme-toggle-btn:hover {
-  background: var(--accent);
-  color: var(--on-accent);
-  transform: translateY(-2px);
-}
-
-.theme-toggle-btn i { animation: icon-pop 0.35s var(--ease-pop); }
 
 .mobile-menu-btn {
   display: none;

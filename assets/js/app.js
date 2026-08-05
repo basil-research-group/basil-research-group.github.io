@@ -8,11 +8,11 @@
 
    The publication DATA lives in publications.js - edit that, not this.
    Section index:
-     1. Setup & constants          6. Scroll reveal animations
-     2. Page initialiser           7. Derived counts (filter labels, tiles)
-     3. Theme toggle               8. Animated number counters
-     4. Mobile menu                9. Gallery lightbox
-     5. Header, progress, top     10. Publications search & filter
+     1. Setup & constants         5. Scroll reveal animations
+     2. Page initialiser          6. Derived counts (filter labels, tiles)
+     3. Mobile menu               7. Animated number counters
+     4. Header, progress, top     8. Gallery lightbox
+                                  9. Publications search & filter
    ========================================================================== */
 
 // --------------------------------------------------------------------------
@@ -37,7 +37,6 @@ const GROUP_AUTHORS = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  initThemeToggle();
   initMobileMenu();
   initHeaderState();
   initScrollSpy();
@@ -50,38 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --------------------------------------------------------------------------
-// 3. Theme Toggle Handler
-// --------------------------------------------------------------------------
-function initThemeToggle() {
-  const themeBtn = document.getElementById('theme-toggle-btn');
-  if (!themeBtn) return;
-
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const currentTheme =
-    localStorage.getItem('theme') || (systemDark ? 'dark' : 'light');
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  updateThemeIcon(currentTheme);
-
-  themeBtn.addEventListener('click', () => {
-    const activeTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = activeTheme === 'light' ? 'dark' : 'light';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-  });
-}
-
-function updateThemeIcon(theme) {
-  const themeBtn = document.getElementById('theme-toggle-btn');
-  if (!themeBtn) return;
-  themeBtn.innerHTML = theme === 'dark' 
-    ? '<i class="fa-solid fa-sun"></i>' 
-    : '<i class="fa-solid fa-moon"></i>';
-}
-
-// --------------------------------------------------------------------------
-// 4. Mobile Navigation Menu
+// 3. Mobile Navigation Menu
 // --------------------------------------------------------------------------
 function initMobileMenu() {
   const menuBtn = document.getElementById('mobile-menu-btn');
@@ -121,7 +89,7 @@ function initMobileMenu() {
 }
 
 // --------------------------------------------------------------------------
-// 5. Sticky Header, Scroll Progress Bar & Back-to-Top Button
+// 4. Sticky Header, Scroll Progress Bar & Back-to-Top Button
 // --------------------------------------------------------------------------
 function initHeaderState() {
   const header = document.getElementById('header');
@@ -164,7 +132,7 @@ function initHeaderState() {
 }
 
 // --------------------------------------------------------------------------
-// 6. Scroll Spy — highlights the nav link for the section in view
+// 5. Scroll Spy — highlights the nav link for the section in view
 // --------------------------------------------------------------------------
 function initScrollSpy() {
   const links = Array.from(document.querySelectorAll('.nav-link'));
@@ -197,7 +165,7 @@ function initScrollSpy() {
 }
 
 // --------------------------------------------------------------------------
-// 7. Scroll Reveal Animations (pop-in, auto-staggered per group)
+// 6. Scroll Reveal Animations (pop-in, auto-staggered per group)
 // --------------------------------------------------------------------------
 function initScrollAnimations() {
   const items = Array.from(document.querySelectorAll('[data-reveal]'));
@@ -247,7 +215,7 @@ function initScrollAnimations() {
 }
 
 // --------------------------------------------------------------------------
-// 7-B. News Ticker
+// 6-B. News Ticker
 // Clones the cards once so the track can slide -50% and loop seamlessly,
 // then sets the duration from the real width to keep the speed constant
 // however many updates are listed.
@@ -280,7 +248,7 @@ function initNewsMarquee() {
 }
 
 // --------------------------------------------------------------------------
-// 8. Derived Counts
+// 7. Derived Counts
 // Every number shown on the page is computed from the PUBLICATIONS dataset,
 // so filter labels, the hero button and the stat tiles can never disagree.
 // --------------------------------------------------------------------------
@@ -340,7 +308,7 @@ function initDerivedCounts() {
 }
 
 // --------------------------------------------------------------------------
-// 9. Animated Stat Counters
+// 8. Animated Stat Counters
 // --------------------------------------------------------------------------
 function initCounters() {
   const counters = Array.from(document.querySelectorAll('[data-count-to]'));
@@ -384,7 +352,7 @@ function initCounters() {
 }
 
 // --------------------------------------------------------------------------
-// 10. Gallery Lightbox
+// 9. Gallery Lightbox
 // --------------------------------------------------------------------------
 function initGalleryLightbox() {
   const cards = Array.from(document.querySelectorAll('.gallery-card'));
@@ -461,7 +429,7 @@ function initGalleryLightbox() {
 }
 
 // --------------------------------------------------------------------------
-// 11. Publications Hub Filter & Search System
+// 10. Publications Hub Filter & Search System
 // --------------------------------------------------------------------------
 function initPublicationsHub() {
   const container = document.getElementById('publications-list');
