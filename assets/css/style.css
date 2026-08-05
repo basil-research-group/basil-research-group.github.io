@@ -1136,6 +1136,24 @@ section {
   line-height: 1.5;
 }
 
+/* Contact address inside the hover panel */
+.member-mail {
+  margin-top: 0.2rem;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  color: #FFFFFF;
+  word-break: break-all;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  padding-bottom: 1px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.member-mail:hover,
+.member-mail:focus-visible {
+  color: #FFFFFF;
+  border-bottom-color: #FFFFFF;
+}
+
 /* No pointer to hover with: show the details all the time */
 @media (hover: none) {
   .member-info {
@@ -1474,6 +1492,75 @@ a.stat-box:focus-visible {
 }
 
 .blog-meta i { color: var(--accent); }
+
+
+/* --------------------------------------------------------------------------
+   News & Media (Achievements page)
+   Press coverage grouped under the paper it reports on.
+   -------------------------------------------------------------------------- */
+.news-media-section {
+  background: var(--paper-2);
+  border-top: 1px solid var(--line);
+}
+
+.media-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.media-group {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.media-group:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.media-paper {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.media-source {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.media-list {
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.media-list a {
+  font-family: var(--font-label);
+  font-size: 0.86rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.media-list i {
+  font-size: 0.7em;
+  transition: transform var(--transition-fast);
+}
+
+.media-list a:hover i { transform: translate(2px, -2px); }
 
 /* --------------------------------------------------------------------------
    12. Photo Gallery + Lightbox

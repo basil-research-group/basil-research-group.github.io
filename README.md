@@ -43,12 +43,11 @@ Then open <http://localhost:8777>. Stop it with `Ctrl+C`.
 ```
 .
 ├── index.html            Home — intro, partner logos, news
-├── research.html         Research themes
+├── research.html         Research themes + funded projects
 ├── team.html             Team members (one flat grid)
 ├── publications.html     Publication list (data comes from JS, see below)
-├── projects.html         Funded projects
 ├── facilities.html       Instruments and lab infrastructure
-├── blog.html             Research highlights
+├── achievements.html     Research highlights + press coverage
 ├── gallery.html          Photo gallery with lightbox
 ├── contact.html          Contact details and profile links
 │
@@ -147,13 +146,17 @@ Same pattern in each case: open the page, copy one card block, edit it.
 
 | To add a…   | Open              | Copy the block                    |
 | ----------- | ----------------- | --------------------------------- |
-| Project     | `projects.html`   | `<div class="project-card">`      |
+| Project     | `research.html`   | `<div class="project-card">`      |
 | Instrument  | `facilities.html` | `<article class="facility-card">` |
-| Highlight   | `blog.html`       | `<article class="blog-card">`     |
+| Highlight   | `achievements.html` | `<article class="blog-card">`   |
 | News item   | `index.html`      | `<div class="news-item-card">`    |
 
 `facilities.html` has a ready-made template near the bottom that's commented
 out — remove the `<!--` and `-->` around it to switch it on.
+
+**Press coverage** lives at the bottom of `achievements.html`. Each paper gets
+one `<article class="media-group">` block holding the paper title, its citation
+line, and a `<li>` per outlet. Copy a `<li>` to add another news item.
 
 ### Change the colours or fonts
 
@@ -179,7 +182,7 @@ in a different font, update the Google Fonts `<link>` in the `<head>` of
 
 The header and footer are copied into every `.html` file. That's deliberate —
 it keeps the site dependency-free and lets search engines read each page —
-but it means **a nav change has to be made in all nine files**.
+but it means **a nav change has to be made in all eight files**.
 
 Find this block and edit it identically everywhere:
 
