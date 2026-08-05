@@ -1174,27 +1174,12 @@ section {
 .facility-diagram {
   flex: 0 0 42%;
   max-width: 470px;
-  min-height: 250px;
+  min-height: 240px;
   border-bottom: none;
   border-right: 1px solid var(--line);
 }
 
 .facility-body { flex: 1; min-width: 0; }
-
-/* A three-photo collage needs the full width to stay landscape, so that
-   card puts its media above the text instead of beside it. */
-.facility-card--stacked { flex-direction: column; }
-
-.facility-card--stacked .facility-collage {
-  flex: none;
-  max-width: none;
-  min-height: 0;
-  height: 215px;
-  border-right: none;
-  border-bottom: 1px solid var(--line);
-}
-
-.facility-card--stacked .facility-body { max-width: 900px; }
 
 
 /* Stack the media above the text once a row gets too narrow to split */
@@ -1295,26 +1280,6 @@ section {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-}
-
-.facility-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 5px;
-  background: var(--accent-tint);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.05rem;
-  color: var(--accent);
-  transition: background var(--transition-normal), color var(--transition-normal);
-}
-
-.facility-card:hover .facility-icon {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--on-accent);
 }
 
 .facility-body h3 {
