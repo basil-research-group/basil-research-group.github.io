@@ -105,7 +105,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 84px;   /* sticky header offset for anchor jumps */
+  scroll-padding-top: 132px;  /* clears the two-row sticky header */
   font-size: 16px;
 }
 
@@ -291,15 +291,21 @@ section {
   border-color: var(--line-strong);
 }
 
+/* ---- Row 2: navigation ------------------------------------------------ */
 .nav-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  height: 76px;
+  height: 48px;
   transition: height var(--transition-normal);
 }
 
-.header-nav.scrolled .nav-container { height: 64px; }
+.header-nav.scrolled .nav-container { height: 44px; }
+
+.nav-menu {
+  width: 100%;
+  justify-content: space-between;
+}
 
 .brand-logo {
   display: flex;
@@ -308,9 +314,44 @@ section {
 }
 
 /* Leaf + molecular ring mark; inherits the accent colour in both themes */
+/* ---- Row 1: BASIL lockup on the left, host institution on the right ----
+   Two rows rather than one, because the full IIT (ISM) lockup, the BASIL
+   strapline and nine nav items cannot share a single 1140px bar. ------- */
+.brand-bar {
+  border-bottom: 1px solid var(--line);
+}
+
+.brand-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 74px;
+  transition: height var(--transition-normal);
+}
+
+.header-nav.scrolled .brand-bar-inner { height: 58px; }
+
+/* Host-institution logo */
+.brand-inst {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-inst img {
+  height: 46px;
+  width: auto;
+  transition: height var(--transition-normal), opacity var(--transition-fast);
+}
+
+.brand-inst:hover img { opacity: 0.75; }
+
+.header-nav.scrolled .brand-inst img { height: 36px; }
+
 .brand-mark {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   color: var(--accent);
   transition: transform var(--transition-normal), width var(--transition-normal), height var(--transition-normal);
@@ -318,7 +359,7 @@ section {
 
 .brand-logo:hover .brand-mark { transform: rotate(-6deg) scale(1.06); }
 
-.header-nav.scrolled .brand-mark { width: 34px; height: 34px; }
+.header-nav.scrolled .brand-mark { width: 40px; height: 40px; }
 
 .brand-text {
   display: flex;
@@ -342,6 +383,7 @@ section {
 
 .brand-sub {
   font-family: var(--font-label);
+  white-space: nowrap;
   font-size: 0.6rem;
   color: var(--ink-3);
   font-weight: 500;
@@ -2079,20 +2121,16 @@ section {
 /* --------------------------------------------------------------------------
    17. Responsive
    -------------------------------------------------------------------------- */
-/* The BASIL wordmark is wide, so tighten the nav before dropping anything */
-@media (max-width: 1250px) {
-  .nav-menu { gap: 1rem; }
-  .nav-links { gap: 0.85rem; }
-  .nav-link { font-size: 0.8rem; }
-  .brand-name { font-size: 1.55rem; }
-  .brand-sub { font-size: 0.55rem; letter-spacing: 0.07em; }
+/* Nine nav items on their own row: only mild tightening needed */
+@media (max-width: 1100px) {
+  .nav-links { gap: 1rem; }
+  .nav-link { font-size: 0.83rem; }
 }
 
-/* Below this the strapline no longer fits alongside nine nav items */
-@media (max-width: 1100px) {
-  .nav-links { gap: 0.75rem; }
-  .nav-link { font-size: 0.78rem; }
-  .brand-sub { display: none; }
+@media (max-width: 900px) {
+  .nav-links { gap: 0.8rem; }
+  .nav-link { font-size: 0.79rem; }
+  .brand-inst img { height: 38px; }
 }
 
 @media (max-width: 992px) {
@@ -2116,9 +2154,17 @@ section {
 @media (max-width: 768px) {
   .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
 
+  /* The full lockup is too wide for a phone; scale it right down */
+  .brand-bar-inner { height: 62px; gap: 0.75rem; }
+  .brand-inst img { height: 30px; }
+  .header-nav.scrolled .brand-bar-inner { height: 54px; }
+  .header-nav.scrolled .brand-inst img { height: 26px; }
+  .brand-mark { width: 34px; height: 34px; }
+  .brand-name { font-size: 1.3rem; }
+
   .nav-links {
-    position: fixed;
-    top: 76px;
+    position: absolute;   /* anchored to the header, so height changes don't matter */
+    top: 100%;
     left: 0;
     width: 100%;
     background: var(--paper);
@@ -2129,9 +2175,6 @@ section {
     display: none;
     box-shadow: var(--shadow-lg);
   }
-
-  /* Dropdown tracks the header as it condenses on scroll */
-  .header-nav.scrolled .nav-links { top: 64px; }
 
   .nav-links.active {
     display: flex;
@@ -2189,6 +2232,10 @@ section {
 }
 
 @media (max-width: 560px) {
+  /* Below this the strapline and the institution lockup can't share a row */
+  .brand-sub { display: none; }
+  .brand-inst img { height: 26px; }
+
   .blog-grid { grid-template-columns: 1fr; }
   .hero-cta { width: 100%; }
   .btn-primary, .btn-secondary { flex: 1; justify-content: center; }

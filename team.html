@@ -49,7 +49,9 @@
 
   <!-- ==== HEADER / NAVIGATION (same on every page) ==================== -->
   <header class="header-nav" id="header">
-    <div class="container nav-container">
+    <!-- Row 1: group identity and host institution -->
+    <div class="brand-bar">
+      <div class="container brand-bar-inner">
       <a href="index.html" class="brand-logo">
         <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><clipPath id="basilLeaf"><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z"/></clipPath></defs><g clip-path="url(#basilLeaf)"><rect x="0" y="40" width="64" height="2.4" fill="currentColor" opacity=".28"/><rect x="0" y="46" width="64" height="2.4" fill="currentColor" opacity=".18"/></g><path d="M32 4C43 16 52 28 52 38a20 20 0 0 1-40 0C12 28 21 16 32 4Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M32 12v46" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity=".5"/><path d="M32 28.5 40.5 33.4v9.7L32 48l-8.5-4.9v-9.7Z" fill="var(--paper, #fff)" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
         <div class="brand-text">
@@ -58,6 +60,17 @@
         </div>
       </a>
 
+      <!-- Host institution. iitism_logo.png is the compact round emblem if
+           you ever want a narrower header. -->
+      <a class="brand-inst" href="https://www.iitism.ac.in" target="_blank" rel="noopener"
+         title="Indian Institute of Technology (ISM) Dhanbad">
+        <img src="assets/images/iitism_logo_full.png" alt="IIT (ISM) Dhanbad">
+      </a>
+      </div>
+    </div>
+
+    <!-- Row 2: navigation -->
+    <div class="container nav-container">
       <div class="nav-menu">
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html" class="nav-link">Home</a></li>
