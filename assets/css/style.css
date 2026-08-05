@@ -1149,9 +1149,11 @@ section {
    -------------------------------------------------------------------------- */
 .facilities-section { background: var(--paper); }
 
+/* One instrument per row: media on the left, description on the right.
+   Cards with no photo yet simply fill the full width with their text. */
 .facilities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.25rem;
 }
 
@@ -1161,21 +1163,59 @@ section {
   border-radius: 6px;
   overflow: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: stretch;
   transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+/* The media column: collage, single photo or diagram, all the same width */
+.facility-collage,
+.facility-photo,
+.facility-diagram {
+  flex: 0 0 42%;
+  max-width: 470px;
+  min-height: 250px;
+  border-bottom: none;
+  border-right: 1px solid var(--line);
+}
+
+.facility-body { flex: 1; min-width: 0; }
+
+/* A three-photo collage needs the full width to stay landscape, so that
+   card puts its media above the text instead of beside it. */
+.facility-card--stacked { flex-direction: column; }
+
+.facility-card--stacked .facility-collage {
+  flex: none;
+  max-width: none;
+  min-height: 0;
+  height: 215px;
+  border-right: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.facility-card--stacked .facility-body { max-width: 900px; }
+
+
+/* Stack the media above the text once a row gets too narrow to split */
+@media (max-width: 800px) {
+  .facility-card { flex-direction: column; }
+
+  .facility-collage,
+  .facility-photo,
+  .facility-diagram {
+    flex: none;
+    max-width: none;
+    min-height: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
 }
 
 .facility-card:hover {
   border-color: var(--accent);
   box-shadow: var(--shadow-md);
   transform: translateY(-4px);
-}
-
-/* A card with several photos takes two columns where there is room */
-.facility-card--wide { grid-column: span 2; }
-
-@media (max-width: 700px) {
-  .facility-card--wide { grid-column: span 1; }
 }
 
 /* Collage: equal tiles side by side, each the same size whatever the
@@ -1185,9 +1225,8 @@ section {
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   gap: 3px;
-  height: 215px;
+  height: auto;
   background: var(--line);
-  border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 
@@ -1204,20 +1243,24 @@ section {
 .facility-card:hover .facility-collage img { transform: scale(1.04); }
 
 @media (max-width: 620px) {
-  .facility-collage { height: 150px; }
+  .facility-collage { min-height: 150px; }
+  .facility-diagram img { max-height: 190px; }
 }
 
 /* A diagram, unlike a photo, must be shown whole - so it is contained
    rather than cropped, on a plain backdrop, with a caption saying so. */
 .facility-diagram {
   background: var(--surface);
-  border-bottom: 1px solid var(--line);
-  padding: 1rem 1rem 0.75rem;
+  padding: 1.25rem 1.25rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .facility-diagram img {
   width: 100%;
-  height: 190px;
+  height: 100%;
+  max-height: 240px;
   object-fit: contain;
   object-position: center;
 }
@@ -1234,10 +1277,8 @@ section {
 }
 
 .facility-photo {
-  height: 190px;
   overflow: hidden;
   background: var(--surface-2);
-  border-bottom: 1px solid var(--line);
 }
 
 .facility-photo img {
