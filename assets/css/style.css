@@ -339,18 +339,20 @@ section {
   flex-shrink: 0;
 }
 
-/* The institution lockup is drawn as a silhouette filled with the site accent,
-   so it follows the light/dark theme instead of being a fixed-colour image.
-   The PNG supplies only the shape (its alpha channel); the colour is CSS. */
+/* The institution lockup is supplied pre-tinted in two versions and swapped
+   by theme. (A CSS mask would be neater, but a mask read by luminance rather
+   than alpha renders nothing at all -- this approach cannot fail that way.)
+   To restore the official blue, point both rules at iitism_logo_full.png. */
 .brand-inst-mark {
   display: block;
   height: 46px;
   aspect-ratio: 725 / 169;
-  background-color: var(--accent);
-  -webkit-mask: url('../images/iitism_logo_mask.png') center / contain no-repeat;
-          mask: url('../images/iitism_logo_mask.png') center / contain no-repeat;
-  transition: height var(--transition-normal), opacity var(--transition-fast),
-              background-color var(--transition-normal);
+  background: url('../images/iitism_logo_brick.png') center / contain no-repeat;
+  transition: height var(--transition-normal), opacity var(--transition-fast);
+}
+
+[data-theme="dark"] .brand-inst-mark {
+  background-image: url('../images/iitism_logo_light.png');
 }
 
 .brand-inst:hover .brand-inst-mark { opacity: 0.75; }
