@@ -25,6 +25,9 @@ const PREFERS_REDUCED_MOTION =
 // Keep this in step with the number of .project-card blocks on that page.
 const PROJECT_COUNT = 4;
 
+// Filled in by initScrollAnimations so dynamically rendered cards can animate too.
+const REVEAL = { observe: null };
+
 // Surnames + initials of group members, highlighted in every author list.
 // Add a line when someone joins; matching is on the start of the name.
 const GROUP_AUTHORS = [
@@ -199,6 +202,13 @@ function initScrollAnimations() {
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
   items.forEach(el => observer.observe(el));
+
+  // Publication cards are built after this runs, so expose the observer for
+  // them; without it the list was the one part of the site that never animated.
+  REVEAL.observe = (el) => {
+    el.style.setProperty('--reveal-delay', '0ms');
+    observer.observe(el);
+  };
 
   // Safety net: anything already on screen after load is shown regardless,
   // so content is never left invisible if the observer doesn't fire.
@@ -440,18 +450,29 @@ function initPublicationsHub() {
 
   if (!container) return;
 
-  let activeType = 'all';
+  // A link may arrive pre-filtered, e.g. publications.html?type=journal
+  // or ?q=fire from the research themes and the home-page tiles.
+  const params = new URLSearchParams(window.location.search);
+  const wantedType = params.get('type');
+  const wantedQuery = (params.get('q') || '').toLowerCase().trim();
+
+  let activeType = ['journal', 'conference', 'thesis'].includes(wantedType) ? wantedType : 'all';
   let activeYear = 'all';
-  let searchQuery = '';
+  let searchQuery = wantedQuery;
 
   function filterAndRender() {
     const filtered = PUBLICATIONS.filter(pub => {
       const matchesType = activeType === 'all' || pub.type === activeType;
       const matchesYear = activeYear === 'all' || pub.year.toString() === activeYear;
-      const matchesSearch = searchQuery === '' || 
-        pub.title.toLowerCase().includes(searchQuery) ||
-        pub.authors.toLowerCase().includes(searchQuery) ||
-        pub.journal.toLowerCase().includes(searchQuery);
+      // authors is a list of names, so flatten it before matching; the other
+      // fields may be absent on conference abstracts, hence the || ''
+      const haystack = [
+        pub.title || '',
+        Array.isArray(pub.authors) ? pub.authors.join(' ') : (pub.authors || ''),
+        pub.journal || ''
+      ].join(' ').toLowerCase();
+
+      const matchesSearch = searchQuery === '' || haystack.includes(searchQuery);
 
       return matchesType && matchesYear && matchesSearch;
     });
@@ -492,6 +513,11 @@ function initPublicationsHub() {
     });
   }
 
+  // Reflect an incoming ?q= / ?type= in the controls, so a filtered view
+  // does not look like the full list with results mysteriously missing.
+  if (searchInput && searchQuery) searchInput.value = params.get('q');
+  typeBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-type') === activeType));
+
   filterAndRender();
 }
 
@@ -510,7 +536,7 @@ function renderPublicationsList(container, items, query) {
   const LABEL = { journal: 'Journal Article', conference: 'Conference', thesis: 'Thesis' };
 
   container.innerHTML = items.map((item, i) => `
-    <article class="pub-card pub-enter" id="pub-${item.id}" style="animation-delay:${Math.min(i * 40, 320)}ms">
+    <article class="pub-card" id="pub-${item.id}">
 
       <div class="pub-main">
         <div class="pub-card-header">
@@ -546,6 +572,14 @@ function renderPublicationsList(container, items, query) {
   container.querySelectorAll('.pub-cover img').forEach(img => {
     img.addEventListener('error', () => img.remove());
   });
+
+  // Animate the cards in as they are scrolled to, like the rest of the site
+  if (REVEAL.observe && !PREFERS_REDUCED_MOTION) {
+    container.querySelectorAll('.pub-card').forEach(card => {
+      card.setAttribute('data-reveal', 'left');
+      REVEAL.observe(card);
+    });
+  }
 }
 
 /**
