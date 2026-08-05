@@ -339,15 +339,23 @@ section {
   flex-shrink: 0;
 }
 
-.brand-inst img {
+/* The institution lockup is drawn as a silhouette filled with the site accent,
+   so it follows the light/dark theme instead of being a fixed-colour image.
+   The PNG supplies only the shape (its alpha channel); the colour is CSS. */
+.brand-inst-mark {
+  display: block;
   height: 46px;
-  width: auto;
-  transition: height var(--transition-normal), opacity var(--transition-fast);
+  aspect-ratio: 725 / 169;
+  background-color: var(--accent);
+  -webkit-mask: url('../images/iitism_logo_mask.png') center / contain no-repeat;
+          mask: url('../images/iitism_logo_mask.png') center / contain no-repeat;
+  transition: height var(--transition-normal), opacity var(--transition-fast),
+              background-color var(--transition-normal);
 }
 
-.brand-inst:hover img { opacity: 0.75; }
+.brand-inst:hover .brand-inst-mark { opacity: 0.75; }
 
-.header-nav.scrolled .brand-inst img { height: 36px; }
+.header-nav.scrolled .brand-inst-mark { height: 36px; }
 
 .brand-mark {
   width: 48px;
@@ -2130,7 +2138,7 @@ section {
 @media (max-width: 900px) {
   .nav-links { gap: 0.8rem; }
   .nav-link { font-size: 0.79rem; }
-  .brand-inst img { height: 38px; }
+  .brand-inst-mark { height: 38px; }
 }
 
 @media (max-width: 992px) {
@@ -2156,9 +2164,9 @@ section {
 
   /* The full lockup is too wide for a phone; scale it right down */
   .brand-bar-inner { height: 62px; gap: 0.75rem; }
-  .brand-inst img { height: 30px; }
+  .brand-inst-mark { height: 30px; }
   .header-nav.scrolled .brand-bar-inner { height: 54px; }
-  .header-nav.scrolled .brand-inst img { height: 26px; }
+  .header-nav.scrolled .brand-inst-mark { height: 26px; }
   .brand-mark { width: 34px; height: 34px; }
   .brand-name { font-size: 1.3rem; }
 
@@ -2234,7 +2242,7 @@ section {
 @media (max-width: 560px) {
   /* Below this the strapline and the institution lockup can't share a row */
   .brand-sub { display: none; }
-  .brand-inst img { height: 26px; }
+  .brand-inst-mark { height: 26px; }
 
   .blog-grid { grid-template-columns: 1fr; }
   .hero-cta { width: 100%; }
