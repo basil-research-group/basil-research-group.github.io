@@ -1,4 +1,4 @@
-# BASIL — Biomarkers and Stable Isotope Laboratory
+# BASIL — Biogeochemical Geoarchaeology Research Group
 
 Website for the BASIL research group, Department of Applied Geology,
 IIT (ISM) Dhanbad.
@@ -44,7 +44,7 @@ Then open <http://localhost:8777>. Stop it with `Ctrl+C`.
 .
 ├── index.html            Home — intro, partner logos, news
 ├── research.html         Research themes
-├── team.html             People, grouped by role
+├── team.html             Team members (one flat grid)
 ├── publications.html     Publication list (data comes from JS, see below)
 ├── projects.html         Funded projects
 ├── facilities.html       Instruments and lab infrastructure
@@ -122,13 +122,12 @@ in that journal**. Roughly 3:4 portrait, around 300px wide, is plenty.
 
 ### Add or remove a group member
 
-Open **`team.html`**. Members are in five groups — Principal Investigator,
-Doctoral Researchers, Master's Students, Interns, Collaborating Researchers.
-Copy a whole `<div class="team-card"> ... </div>` block into the right group
-and change the photo, name, role and institution.
+Open **`team.html`**. Everyone sits in a single grid with no hierarchy.
+Copy a whole `<div class="team-card"> ... </div>` block, paste it where you
+want the person to appear, and change the photo, name, role and institution.
 
-Put the photo in `assets/images/` first. Square images look best (they're
-cropped to a circle).
+Put the photo in `assets/images/` first. Square images look best — the card
+is a square, and the name and role appear over the photo on hover.
 
 When someone leaves, move their card into the **Alumni** block near the
 bottom of the file and delete the `<!--` and `-->` markers around it.

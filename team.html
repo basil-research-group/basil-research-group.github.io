@@ -4,7 +4,7 @@
   BASIL - Biogeochemical Geoarchaeology Research Group
   Department of Applied Geology, IIT (ISM) Dhanbad
 
-  PAGE: People - add or remove a member card in the grids below
+  PAGE: Team - add or remove a member card in the single grid below
 
   HOW TO EDIT THIS PAGE
   ---------------------
@@ -20,7 +20,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>People | BASIL | IIT (ISM) Dhanbad</title>
+  <title>Team | BASIL | IIT (ISM) Dhanbad</title>
 
   <!-- SEO & academic metadata -->
   <meta name="description" content="Members of BASIL: group leader, doctoral researchers, students and collaborators.">
@@ -28,9 +28,9 @@
   <meta name="author" content="BASIL - Biogeochemical Geoarchaeology Research Group, IIT (ISM) Dhanbad">
 
   <!-- Link preview (WhatsApp, X, LinkedIn) -->
-  <meta property="og:title" content="People | BASIL | IIT (ISM) Dhanbad">
+  <meta property="og:title" content="Team | BASIL | IIT (ISM) Dhanbad">
   <meta property="og:description" content="Members of BASIL: group leader, doctoral researchers, students and collaborators.">
-  <meta property="og:image" content="assets/images/deepak_jha_hero.jpg">
+  <meta property="og:image" content="assets/images/wix_gallery_exact/wix_field_visit_35.jpg">
   <meta property="og:type" content="website">
 
   <!-- Fonts: Bitter (BASIL wordmark) + Source Serif 4 (headings) + Inter (body) -->
@@ -76,7 +76,7 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="research.html" class="nav-link">Research</a></li>
-          <li><a href="team.html" class="nav-link active">People</a></li>
+          <li><a href="team.html" class="nav-link active">Team</a></li>
           <li><a href="publications.html" class="nav-link">Publications</a></li>
           <li><a href="projects.html" class="nav-link">Projects</a></li>
           <li><a href="facilities.html" class="nav-link">Facilities</a></li>
@@ -100,17 +100,19 @@
 <section id="team" class="team-section">
     <div class="container">
       <div class="section-header center" data-reveal="left">
-        <span class="section-kicker">People</span>
-        <h2 class="section-title">The Group</h2>
-        <p class="section-desc">BASIL brings together doctoral researchers, master&rsquo;s students and interns working on biomarkers, stable isotopes and geoarchaeology.</p>
+        <span class="section-kicker">The Group</span>
+        <h2 class="section-title">Team</h2>
+        <p class="section-desc">Hover over a photo to see who&rsquo;s who.</p>
       </div>
 
-      <!-- ---- PRINCIPAL INVESTIGATOR ---------------------------------------------------- -->
-      <div class="people-group people-group--lead">
-        <h3 class="people-group-title" data-reveal="left">Group Leader</h3>
-        
-        <div class="team-grid">
-        <div class="team-card leader-card" data-reveal="left" tabindex="0">
+      <!-- ---- MEMBERS ------------------------------------------------
+           One flat grid, no groupings. To add someone, copy a whole
+           <div class="team-card"> ... </div> block and change the photo,
+           name, role and institution. Put the photo in assets/images/
+           first; square images crop best.
+           ------------------------------------------------------------ -->
+      <div class="team-grid">
+        <div class="team-card" data-reveal="left" tabindex="0">
           <div class="member-photo-container">
             <img src="assets/images/deepak_jha_team.jpg" alt="Dr. Deepak Kumar Jha" class="member-photo">
           </div>
@@ -120,14 +122,6 @@
             <p class="member-inst">Assistant Professor, IIT (ISM) Dhanbad, India</p>
           </div>
         </div>
-        </div>
-      </div>
-
-      <!-- ---- DOCTORAL RESEARCHERS ---------------------------------------------------- -->
-      <div class="people-group">
-        <h3 class="people-group-title" data-reveal="left">Doctoral Researchers</h3>
-        
-        <div class="team-grid">
         <div class="team-card" data-reveal="left" tabindex="0">
           <div class="member-photo-container">
             <img src="assets/images/vimochani_tripathi.jpg" alt="Ms. Vimochani Tripathi" class="member-photo">
@@ -158,14 +152,6 @@
             <p class="member-inst">IIT (ISM) Dhanbad, India</p>
           </div>
         </div>
-        </div>
-      </div>
-
-      <!-- ---- MASTER'S STUDENTS ---------------------------------------------------- -->
-      <div class="people-group">
-        <h3 class="people-group-title" data-reveal="left">Master's Students</h3>
-        
-        <div class="team-grid">
         <div class="team-card" data-reveal="left" tabindex="0">
           <div class="member-photo-container">
             <img src="assets/images/mtech_student.jpg" alt="Mr. Aashin Krishna" class="member-photo">
@@ -186,14 +172,6 @@
             <p class="member-inst">National Museum Institute, Delhi, India</p>
           </div>
         </div>
-        </div>
-      </div>
-
-      <!-- ---- INTERNS ---------------------------------------------------- -->
-      <div class="people-group">
-        <h3 class="people-group-title" data-reveal="left">Interns</h3>
-        
-        <div class="team-grid">
         <div class="team-card" data-reveal="left" tabindex="0">
           <div class="member-photo-container">
             <img src="assets/images/kumar_twarit.jpg" alt="Mr. Kumar Twarit" class="member-photo">
@@ -204,14 +182,6 @@
             <p class="member-inst">IISER Mohali, India</p>
           </div>
         </div>
-        </div>
-      </div>
-
-      <!-- ---- COLLABORATING RESEARCHERS ---------------------------------------------------- -->
-      <div class="people-group">
-        <h3 class="people-group-title" data-reveal="left">Collaborating Researchers</h3>
-        
-        <div class="team-grid">
         <div class="team-card" data-reveal="left" tabindex="0">
           <div class="member-photo-container">
             <img src="assets/images/hemant_vaishnav.jpg" alt="Mr. Hemant Vaishnav" class="member-photo">
@@ -222,18 +192,15 @@
             <p class="member-inst">Indira Gandhi National Tribal University, India</p>
           </div>
         </div>
-        </div>
       </div>
 
       <!-- ---- ALUMNI -------------------------------------------------
-           When someone leaves the group, move their card into this block
-           and remove the comment markers around it.
+           When someone leaves, move their card into this block and
+           remove the comment markers around it.
 
-      <div class="people-group">
-        <h3 class="people-group-title" data-reveal="left">Alumni</h3>
-        <div class="team-grid">
-          ... paste member cards here ...
-        </div>
+      <h3 class="people-group-title" data-reveal="left">Alumni</h3>
+      <div class="team-grid">
+        ... paste member cards here ...
       </div>
       -->
     </div>
