@@ -1037,10 +1037,19 @@ section {
 /* auto-FILL, not auto-fit: auto-fit collapses the empty tracks, so a group
    holding a single member would stretch that one card across the whole row.
    auto-fill keeps the tracks, so every card is the same size everywhere. */
+/* Flex, not grid: with grid, justify-content centres the whole track group,
+   so a section holding one member still sat in the left-hand track with
+   empty tracks beside it. Flex wrapping centres the cards themselves. */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
+}
+
+.team-card {
+  flex: 0 1 260px;
+  max-width: 260px;
 }
 
 /* People page is split into role groups (PI, doctoral, students, ...) */
@@ -1050,27 +1059,31 @@ section {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--ink);
-  padding-bottom: 0.6rem;
-  margin-bottom: 1.25rem;
+  text-align: center;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
   border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  position: relative;
 }
 
-.people-group-title::before {
+.people-group-title::after {
   content: '';
-  width: 4px;
-  height: 1.1em;
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 2px;
   background: var(--accent);
   border-radius: 1px;
 }
 
 .people-group-note {
-  margin-top: -0.75rem;
-  margin-bottom: 1.25rem;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
   font-size: 0.9rem;
   color: var(--ink-3);
+  text-align: center;
 }
 
 /* A single PI card shouldn't stretch the full width of the page */
