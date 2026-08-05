@@ -1080,7 +1080,7 @@ section {
    otherwise the information would be unreachable. --------------------- */
 .team-card {
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: 6px;
@@ -1118,7 +1118,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;   /* keep faces in frame when cropping */
+  object-position: center center;   /* centred crop */
   transition: transform 0.5s var(--ease-pop);
 }
 
