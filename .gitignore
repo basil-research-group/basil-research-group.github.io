@@ -20,3 +20,23 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# ---------------------------------------------------------------------------
+# Local photo archive - NOT published.
+#
+# These folders hold the raw material downloaded from the old Wix site:
+# full-resolution originals, duplicates of images that were superseded, and
+# files the site never uses. Together they are about 245 MB.
+#
+# Everything the website actually displays has already been copied, resized,
+# into assets/images/ and assets/images/wix_gallery_exact/, so nothing here
+# is needed to build or serve the site. Keeping them out of git keeps the
+# repository small and quick to clone.
+#
+# The folders stay on your computer - this only stops them being uploaded.
+# To publish one of these photos, resize it and copy it into
+# assets/images/wix_gallery_exact/ as described in README.md.
+# ---------------------------------------------------------------------------
+assets/images/wix_downloaded/
+assets/images/wix_gallery/
+assets/images/wix_originals/
