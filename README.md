@@ -122,8 +122,8 @@ in that journal**. Roughly 3:4 portrait, around 300px wide, is plenty.
 
 ### Add or remove a group member
 
-Open **`team.html`**. Members are in four groups — Principal Investigator,
-Doctoral Researchers, Master's Students & Interns, Collaborating Researchers.
+Open **`team.html`**. Members are in five groups — Principal Investigator,
+Doctoral Researchers, Master's Students, Interns, Collaborating Researchers.
 Copy a whole `<div class="team-card"> ... </div>` block into the right group
 and change the photo, name, role and institution.
 
