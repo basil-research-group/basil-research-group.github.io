@@ -1034,9 +1034,12 @@ section {
    -------------------------------------------------------------------------- */
 .team-section { background: var(--paper-2); }
 
+/* auto-FILL, not auto-fit: auto-fit collapses the empty tracks, so a group
+   holding a single member would stretch that one card across the whole row.
+   auto-fill keeps the tracks, so every card is the same size everywhere. */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.25rem;
 }
 
@@ -1071,20 +1074,18 @@ section {
 }
 
 /* A single PI card shouldn't stretch the full width of the page */
-.people-group:first-child .team-grid {
-  grid-template-columns: repeat(auto-fit, minmax(228px, 260px));
-}
-
+/* ---- Member cards -------------------------------------------------------
+   The photo IS the card. Details sit in a panel that fades in on hover or
+   keyboard focus. Devices without a pointer get the panel permanently,
+   otherwise the information would be unreachable. --------------------- */
 .team-card {
-  background: var(--surface);
+  position: relative;
+  aspect-ratio: 3 / 4;
+  background: var(--surface-2);
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 1.6rem 1rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
+  overflow: hidden;
+  padding: 0;
   transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
@@ -1093,227 +1094,91 @@ section {
   box-shadow: inset 0 2px 0 0 var(--accent);
 }
 
-.team-card:hover {
+.team-card:hover,
+.team-card:focus-visible {
   border-color: var(--accent);
   box-shadow: var(--shadow-md);
   transform: translateY(-5px);
+  outline: none;
 }
 
 .member-photo-container {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
   background: var(--surface-2);
-  margin-bottom: 0.25rem;
-  transition: border-color var(--transition-normal), transform var(--transition-normal);
-}
-
-.team-card:hover .member-photo-container {
-  border-color: var(--accent);
-  transform: scale(1.05);
 }
 
 .member-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;   /* keep faces in frame when cropping */
+  transition: transform 0.5s var(--ease-pop);
 }
 
+.team-card:hover .member-photo,
+.team-card:focus-visible .member-photo { transform: scale(1.05); }
+
+/* The panel: a flat wash, no gradient */
+.member-info {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  background: rgba(35, 24, 15, 0.9);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.team-card:hover .member-info,
+.team-card:focus-visible .member-info,
+.team-card:focus-within .member-info { opacity: 1; }
+
 .member-name {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--ink);
+  color: #FFFFFF;
+  line-height: 1.3;
 }
 
 .member-role {
   font-family: var(--font-label);
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-tint);
-  padding: 0.2rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+  background: var(--accent);
+  padding: 0.25rem 0.65rem;
   border-radius: 3px;
-  border: 1px solid var(--line);
 }
 
 .member-inst {
   font-size: 0.8rem;
-  color: var(--ink-3);
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.5;
 }
 
-/* --------------------------------------------------------------------------
-   10-B. Facilities / Instrumentation
-   -------------------------------------------------------------------------- */
-.facilities-section { background: var(--paper); }
-
-/* One instrument per row: media on the left, description on the right.
-   Cards with no photo yet simply fill the full width with their text. */
-.facilities-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
-
-.facility-card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
-}
-
-/* The media column: collage, single photo or diagram, all the same width */
-.facility-collage,
-.facility-photo,
-.facility-diagram {
-  flex: 0 0 42%;
-  max-width: 470px;
-  min-height: 240px;
-  border-bottom: none;
-  border-right: 1px solid var(--line);
-}
-
-.facility-body { flex: 1; min-width: 0; }
-
-
-/* Stack the media above the text once a row gets too narrow to split */
-@media (max-width: 800px) {
-  .facility-card { flex-direction: column; }
-
-  .facility-collage,
-  .facility-photo,
-  .facility-diagram {
-    flex: none;
-    max-width: none;
-    min-height: 0;
-    border-right: none;
-    border-bottom: 1px solid var(--line);
+/* No pointer to hover with: show the details all the time */
+@media (hover: none) {
+  .member-info {
+    opacity: 1;
+    inset: auto 0 0 0;
+    justify-content: flex-end;
+    padding: 0.9rem 0.85rem;
+    gap: 0.35rem;
   }
-}
-
-.facility-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-/* Collage: equal tiles side by side, each the same size whatever the
-   source photo's shape (object-fit crops rather than letterboxes). */
-.facility-collage {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 3px;
-  height: auto;
-  background: var(--line);
-  overflow: hidden;
-}
-
-.facility-collage img {
-  width: 100%;
-  height: 100%;
-  min-width: 0;                 /* let grid tracks share width evenly */
-  object-fit: cover;
-  object-position: center;
-  background: var(--surface-2);
-  transition: transform 0.55s var(--ease-pop);
-}
-
-.facility-card:hover .facility-collage img { transform: scale(1.04); }
-
-@media (max-width: 620px) {
-  .facility-collage { min-height: 150px; }
-  .facility-diagram img { max-height: 190px; }
-}
-
-/* A diagram, unlike a photo, must be shown whole - so it is contained
-   rather than cropped, on a plain backdrop, with a caption saying so. */
-.facility-diagram {
-  background: var(--surface);
-  padding: 1.25rem 1.25rem 0.9rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.facility-diagram img {
-  width: 100%;
-  height: 100%;
-  max-height: 240px;
-  object-fit: contain;
-  object-position: center;
-}
-
-.facility-diagram figcaption {
-  margin-top: 0.6rem;
-  font-family: var(--font-label);
-  font-size: 0.68rem;
-  line-height: 1.45;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  text-align: center;
-}
-
-.facility-photo {
-  overflow: hidden;
-  background: var(--surface-2);
-}
-
-.facility-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.55s var(--ease-pop);
-}
-
-.facility-card:hover .facility-photo img { transform: scale(1.06); }
-
-.facility-body {
-  padding: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.facility-body h3 {
-  font-size: 1.12rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.35;
-}
-
-.facility-status {
-  font-family: var(--font-label);
-  font-size: 0.68rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-  width: fit-content;
-  padding: 0.2rem 0.55rem;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--accent-tint);
-}
-
-.facility-body p:not(.facility-status) {
-  font-size: 0.88rem;
-  color: var(--ink-3);
-  line-height: 1.7;
-}
-
-.facility-footnote {
-  margin-top: 2rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: var(--ink-3);
 }
 
 /* --------------------------------------------------------------------------
