@@ -1791,6 +1791,14 @@ section {
   font-weight: 600;
 }
 
+/* Author list: normal weight, so the group's own names can stand out */
+.pub-authors { color: var(--ink-2); }
+
+.pub-author-group {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .pub-text em { color: var(--ink-2); }
 
 /* search-term highlight */

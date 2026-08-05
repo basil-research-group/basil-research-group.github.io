@@ -25,6 +25,17 @@ const PREFERS_REDUCED_MOTION =
 // Keep this in step with the number of .project-card blocks on that page.
 const PROJECT_COUNT = 4;
 
+// Surnames + initials of group members, highlighted in every author list.
+// Add a line when someone joins; matching is on the start of the name.
+const GROUP_AUTHORS = [
+  'Jha, D.',        // Deepak Kumar Jha (PI)
+  'Vaishnav, H.',
+  'Tripathi, V.',
+  'Shrote, A.',
+  'Shrey, S.',
+  'Goel, S.',
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMobileMenu();
@@ -540,7 +551,7 @@ function renderPublicationsList(container, items, query) {
         </div>
 
         <div class="pub-text">
-          ${item.authors ? `<strong>${mark(item.authors)}</strong> ` : ''}${item.year ? `(${item.year}). ` : ''}
+          ${renderAuthors(item.authors, query)}${item.year ? `(${item.year}). ` : ''}
           &ldquo;${mark(item.title)}&rdquo;.
           ${item.journal ? `<em>${mark(item.journal)}</em>` : ''}${item.details ? `, ${escapeHtml(item.details)}` : ''}.
         </div>
@@ -584,10 +595,38 @@ function renderCover(item) {
       </div>`;
 }
 
+/**
+ * Author list.
+ * Names are stored as "Surname, Initials", so a comma already sits inside
+ * every name. Separating the authors with commas as well makes "Jha, D.K."
+ * read as two people - a real problem on papers carrying both Jha, D.K. and
+ * Jha, G. Semicolons between authors remove the ambiguity, and members of
+ * the group are picked out in the accent colour.
+ */
+function renderAuthors(authors, query) {
+  const list = Array.isArray(authors) ? authors : (authors ? [authors] : []);
+  if (!list.length) return '';
+
+  const html = list.map(name => {
+    const marked = highlight(escapeHtml(name), query);
+    return isGroupMember(name)
+      ? `<span class="pub-author-group">${marked}</span>`
+      : marked;
+  }).join('; ');
+
+  return `<span class="pub-authors">${html}</span> `;
+}
+
+/** True for names belonging to BASIL, so they stand out in a long author list. */
+function isGroupMember(name) {
+  return GROUP_AUTHORS.some(g => name.toLowerCase().startsWith(g.toLowerCase()));
+}
+
 /** Plain-text citation used by the Copy button. */
 function buildCitation(item) {
   const bits = [];
-  if (item.authors) bits.push(item.authors);
+  const authors = Array.isArray(item.authors) ? item.authors.join('; ') : item.authors;
+  if (authors) bits.push(authors);
   if (item.year) bits.push(`(${item.year}).`);
   bits.push(`${item.title}.`);
   if (item.journal) bits.push(item.journal + (item.details ? ` ${item.details}` : '') + '.');
