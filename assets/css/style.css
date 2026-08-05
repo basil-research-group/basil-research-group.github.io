@@ -1182,6 +1182,183 @@ section {
 }
 
 /* --------------------------------------------------------------------------
+   10-B. Facilities / Instrumentation
+   -------------------------------------------------------------------------- */
+.facilities-section { background: var(--paper); }
+
+/* One instrument per row: media on the left, description on the right.
+   Cards with no photo yet simply fill the full width with their text. */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.facility-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+/* The media column: collage, single photo or diagram, all the same width */
+.facility-collage,
+.facility-photo,
+.facility-diagram {
+  flex: 0 0 44%;
+  max-width: 480px;
+  min-height: 230px;
+  background: var(--paper-2);
+  border-bottom: none;
+  border-right: 1px solid var(--line);
+}
+
+.facility-body { flex: 1; min-width: 0; }
+
+
+/* Stack the media above the text once a row gets too narrow to split */
+@media (max-width: 800px) {
+  .facility-card { flex-direction: column; }
+
+  .facility-collage,
+  .facility-photo,
+  .facility-diagram {
+    flex: none;
+    max-width: none;
+    min-height: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+.facility-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+/* Collage: equal tiles side by side, each the same size whatever the
+   source photo's shape (object-fit crops rather than letterboxes). */
+.facility-collage {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+  padding: 12px;
+  height: auto;
+  overflow: hidden;
+}
+
+.facility-collage img {
+  width: 100%;
+  height: 100%;
+  min-width: 0;                 /* let grid tracks share width evenly */
+  object-fit: contain;          /* whole instrument, never sliced */
+  object-position: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+
+@media (max-width: 620px) {
+  .facility-collage { min-height: 150px; }
+  .facility-diagram img { max-height: 190px; }
+}
+
+/* A diagram, unlike a photo, must be shown whole - so it is contained
+   rather than cropped, on a plain backdrop, with a caption saying so. */
+.facility-diagram {
+  background: var(--surface);
+  padding: 1.25rem 1.25rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.facility-diagram img {
+  width: 100%;
+  height: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.facility-diagram figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.facility-photo {
+  overflow: hidden;
+  padding: 12px;
+}
+
+.facility-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 5px;
+}
+
+
+.facility-body {
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.facility-body h3 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.facility-status {
+  font-family: var(--font-label);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  width: fit-content;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--accent-tint);
+}
+
+.facility-body p:not(.facility-status) {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+
+.facility-footnote {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-3);
+}
+
+/* --------------------------------------------------------------------------
    11. Research Blog
    -------------------------------------------------------------------------- */
 .blog-section {
