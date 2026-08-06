@@ -664,24 +664,6 @@ section {
   gap: 0.85rem;
 }
 
-/* The numeral sits in a tinted disc rather than floating as loose red text,
-   which keeps the accent to a small, deliberate area. */
-.question-num {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--accent-tint);
-  font-family: var(--font-label);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-}
-
 .question-card h3 {
   font-family: var(--font-heading);
   font-size: 1.02rem;
