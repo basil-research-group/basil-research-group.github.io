@@ -80,7 +80,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 176px;  /* clears the two-row sticky header (166px) */
+  scroll-padding-top: 182px;  /* clears the two-row sticky header (172px) */
   font-size: 16px;
 }
 
@@ -271,11 +271,11 @@ section {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 48px;
+  height: 54px;
   transition: height var(--transition-normal);
 }
 
-.header-nav.scrolled .nav-container { height: 44px; }
+.header-nav.scrolled .nav-container { height: 48px; }
 
 .nav-menu {
   width: 100%;
@@ -387,7 +387,7 @@ section {
 }
 
 .nav-link {
-  font-size: 0.88rem;
+  font-size: 0.98rem;
   font-weight: 500;
   color: var(--ink-3);
   padding: 0.4rem 0.1rem;
@@ -2569,13 +2569,26 @@ a.blog-card:focus-visible {
 /* Nine nav items on their own row: only mild tightening needed */
 @media (max-width: 1100px) {
   .nav-links { gap: 1rem; }
-  .nav-link { font-size: 0.83rem; }
+  .nav-link { font-size: 0.92rem; }
+}
+
+/* The identity row is the widest thing in the header: the leaf, the wordmark,
+   the full strapline and the institute lockup all on one line. Step it down
+   here or the lockup runs off the right edge. */
+@media (max-width: 1080px) {
+  .brand-name { font-size: 2.25rem; }
+  .brand-sub { font-size: 0.72rem; }
+  .brand-mark { width: 62px; height: 62px; }
+  .brand-inst-mark { height: 60px; }
 }
 
 @media (max-width: 900px) {
   .nav-links { gap: 0.8rem; }
-  .nav-link { font-size: 0.79rem; }
-  .brand-inst-mark { height: 64px; }
+  .nav-link { font-size: 0.86rem; }
+  .brand-name { font-size: 2rem; }
+  .brand-sub { font-size: 0.64rem; }
+  .brand-mark { width: 56px; height: 56px; }
+  .brand-inst-mark { height: 52px; }
 }
 
 @media (max-width: 992px) {
