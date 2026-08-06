@@ -13,6 +13,7 @@
      3. Mobile menu                8. Gallery lightbox
      4. Header, progress, top      9. Publications search & filter
      5. Scroll spy                10. PDF requests from Publications
+                                 11. Visitor counter (footer)
    ========================================================================== */
 
 // --------------------------------------------------------------------------
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initGalleryLightbox();
   initPublicationsHub();
   initPdfRequest();
+  initVisitorCount();
 });
 
 // --------------------------------------------------------------------------
@@ -608,6 +610,56 @@ function initPdfRequest() {
     target.classList.add('is-flagged');
     setTimeout(() => target.classList.remove('is-flagged'), 2600);
   }
+}
+
+// --------------------------------------------------------------------------
+// 11. Visitor counter (footer)
+//     GitHub Pages serves static files and cannot count anything itself, so
+//     the tally is kept by counterapi.dev - a free, no-signup counter.
+//
+//     TO RESET OR MOVE THE COUNTER: change COUNTER_KEY below. Each namespace
+//     and key pair is a separate tally, and a new one starts at zero.
+//     TO REMOVE IT: delete the <p class="visitor-count"> line from the footer
+//     of every .html page; this function then does nothing.
+// --------------------------------------------------------------------------
+const COUNTER_KEY = 'https://api.counterapi.dev/v1/basil-research-group/site-visits';
+
+function initVisitorCount() {
+  const el = document.getElementById('visitor-count');
+  if (!el) return;
+
+  // Local previews would otherwise inflate the count while you are editing
+  const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+
+  // Count a person once per browser session, not once per page they open,
+  // so clicking through the nav does not register eight visits.
+  let counted = false;
+  try {
+    counted = window.sessionStorage.getItem('basil-counted') === '1';
+  } catch (err) {
+    counted = false;      // private browsing can block sessionStorage
+  }
+
+  const url = (counted || isLocal) ? `${COUNTER_KEY}/` : `${COUNTER_KEY}/up`;
+
+  fetch(url, { cache: 'no-store' })
+    .then(response => (response.ok ? response.json() : Promise.reject(response.status)))
+    .then(data => {
+      if (typeof data.count !== 'number') return;
+
+      if (!counted && !isLocal) {
+        try { window.sessionStorage.setItem('basil-counted', '1'); } catch (err) { /* ignore */ }
+      }
+
+      const label = data.count === 1 ? 'visit' : 'visits';
+      el.innerHTML =
+        `<i class="fa-regular fa-eye"></i> ${data.count.toLocaleString('en-IN')} ${label}`;
+      el.hidden = false;
+    })
+    .catch(() => {
+      // Counter unreachable - leave the footer as it was rather than showing
+      // a broken or zero figure.
+    });
 }
 
 function escapeHtml(text) {

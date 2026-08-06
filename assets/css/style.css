@@ -2408,6 +2408,26 @@ a.blog-card:focus-visible {
 
 .footer p { font-family: var(--font-label); font-size: 0.75rem; }
 
+/* Sits quietly under the copyright line - a fact, not a feature */
+.visitor-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-label);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+.visitor-count i {
+  color: var(--line-strong);
+  font-size: 0.9em;
+}
+
+/* The display above would otherwise beat the browser's own [hidden] rule,
+   leaving an empty box in the footer before the count arrives. */
+.visitor-count[hidden] { display: none; }
+
 .back-to-top {
   color: var(--accent);
   font-weight: 600;
