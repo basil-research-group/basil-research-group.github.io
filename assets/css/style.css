@@ -1020,39 +1020,18 @@ section {
   align-items: stretch;
 }
 
+/* These cards are read, not clicked. No hover lift, no border colour change,
+   no shadow - the standing left rule marks them as information panels, the
+   same idiom as .featured-news-box and .collab-box. */
 .project-card {
   background: var(--surface);
   border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
   border-radius: 6px;
   padding: 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  position: relative;
-  overflow: hidden;
-  transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
-}
-
-/* Accent rail that slides in on hover */
-.project-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transform-origin: 50% 0;
-  transition: transform 0.35s var(--ease-pop);
-}
-
-.project-card:hover::before { transform: scaleY(1); }
-
-.project-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
 }
 
 .project-top {
@@ -1077,7 +1056,7 @@ section {
 .project-top h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .project-name {
@@ -1109,11 +1088,8 @@ section {
   width: auto;
   max-width: 72%;
   object-fit: contain;
-  opacity: 0.75;
-  transition: opacity var(--transition-fast);
+  opacity: 0.8;
 }
-
-.project-card:hover .project-logo img { opacity: 1; }
 
 /* A round emblem needs a little more height than a wide wordmark to carry
    the same visual weight beside it. */
