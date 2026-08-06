@@ -627,6 +627,138 @@ section {
 /* --------------------------------------------------------------------------
    7. News & Announcements
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   About the group (home page)
+   The group's own write-up: a lead paragraph, the three research questions
+   as numbered cards, then the lab capacity note and a collaboration call.
+   -------------------------------------------------------------------------- */
+.about-section {
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.about-lead {
+  max-width: 78ch;
+  margin-bottom: 2.25rem;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+
+.question-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.question-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.question-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Numbers the questions. Kept on the accent rather than a pale tint so it
+   still clears 3:1 as large text. */
+.question-num {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.question-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.question-card p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.about-capacity {
+  max-width: 78ch;
+  margin-top: 2.25rem;
+  font-size: 0.94rem;
+  line-height: 1.85;
+  color: var(--ink-2);
+}
+
+/* Trails the paragraph it belongs to rather than sitting on its own line */
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.4rem;
+  font-family: var(--font-label);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.inline-link i {
+  font-size: 0.72em;
+  transition: transform var(--transition-fast);
+}
+
+.inline-link:hover { color: var(--accent-hover); }
+.inline-link:hover i { transform: translateX(3px); }
+
+.collab-box {
+  margin-top: 2.5rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.collab-box h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.collab-box p {
+  max-width: 78ch;
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+
+@media (max-width: 900px) {
+  .question-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .question-grid { grid-template-columns: 1fr; }
+  .collab-box { padding: 1.35rem; }
+  .inline-link { margin-left: 0; display: flex; margin-top: 0.6rem; }
+}
+
 .news-section {
   background: var(--paper);
   border-bottom: 1px solid var(--line);
