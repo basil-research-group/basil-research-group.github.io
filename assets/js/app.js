@@ -8,11 +8,11 @@
 
    The publication DATA lives in publications.js - edit that, not this.
    Section index:
-     1. Setup & constants         6. Derived counts (filter labels, tiles)
-     2. Page initialiser          7. Animated number counters
-     3. Mobile menu               8. Gallery lightbox
-     4. Header, progress, top     9. Publications search & filter
-     5. Scroll reveal animations 10. PDF requests from Publications
+     1. Setup & constants          6. Scroll reveal animations
+     2. Page initialiser           7. Derived counts (filter labels, years)
+     3. Mobile menu                8. Gallery lightbox
+     4. Header, progress, top      9. Publications search & filter
+     5. Scroll spy                10. PDF requests from Publications
    ========================================================================== */
 
 // --------------------------------------------------------------------------
@@ -20,10 +20,6 @@
 // --------------------------------------------------------------------------
 const PREFERS_REDUCED_MOTION =
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// Projects live on projects.html, so the home page can't count the cards.
-// Keep this in step with the number of .project-card blocks on that page.
-const PROJECT_COUNT = 4;
 
 // Filled in by initScrollAnimations so dynamically rendered cards can animate too.
 const REVEAL = { observe: null };
@@ -46,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initDerivedCounts();
   initNewsMarquee();
   initScrollAnimations();
-  initCounters();
   initGalleryLightbox();
   initPublicationsHub();
   initPdfRequest();
@@ -266,8 +261,6 @@ function initNewsMarquee() {
 function initDerivedCounts() {
   const journals = PUBLICATIONS.filter(p => p.type === 'journal').length;
   const talks = PUBLICATIONS.filter(p => p.type === 'conference').length;
-  // Count the cards when we're on the projects page, else fall back
-  const projects = document.querySelectorAll('.project-card').length || PROJECT_COUNT;
 
   const setText = (selector, text) => {
     const el = document.querySelector(selector);
@@ -303,67 +296,10 @@ function initDerivedCounts() {
       `<i class="fa-solid fa-book-open"></i> Publications (${PUBLICATIONS.length})`;
   }
 
-  const stats = {
-    papers: journals,
-    talks: talks,
-    projects: projects
-  };
-
-  document.querySelectorAll('.stat-box').forEach(box => {
-    const key = box.querySelector('.stat-lbl');
-    const num = box.querySelector('.stat-num');
-    if (!key || !num) return;
-    const value = stats[key.textContent.trim().toLowerCase()];
-    if (value !== undefined) num.dataset.countTo = value;
-  });
 }
 
 // --------------------------------------------------------------------------
-// 8. Animated Stat Counters
-// --------------------------------------------------------------------------
-function initCounters() {
-  const counters = Array.from(document.querySelectorAll('[data-count-to]'));
-  if (!counters.length) return;
-
-  const run = (el) => {
-    const target = parseInt(el.dataset.countTo, 10) || 0;
-
-    if (PREFERS_REDUCED_MOTION) {
-      el.textContent = target;
-      return;
-    }
-
-    const duration = 1100;
-    const start = performance.now();
-
-    const step = (now) => {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);   // ease-out cubic
-      el.textContent = Math.round(target * eased);
-      if (t < 1) requestAnimationFrame(step);
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  if (!('IntersectionObserver' in window)) {
-    counters.forEach(run);
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      run(entry.target);
-      obs.unobserve(entry.target);
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(el => observer.observe(el));
-}
-
-// --------------------------------------------------------------------------
-// 9. Gallery Lightbox
+// 8. Gallery Lightbox
 // --------------------------------------------------------------------------
 function initGalleryLightbox() {
   // Gallery photos and press clippings both use this viewer
@@ -441,7 +377,7 @@ function initGalleryLightbox() {
 }
 
 // --------------------------------------------------------------------------
-// 10. Publications Hub Filter & Search System
+// 9. Publications Hub Filter & Search System
 // --------------------------------------------------------------------------
 function initPublicationsHub() {
   const container = document.getElementById('publications-list');

@@ -434,7 +434,6 @@ section {
   cursor: pointer;
 }
 
-
 /* --------------------------------------------------------------------------
    5. Hero
    -------------------------------------------------------------------------- */
@@ -580,55 +579,6 @@ section {
 }
 
 .btn-primary i, .btn-secondary i { font-size: 0.9em; }
-
-/* Sits under the buttons now rather than inside a profile card */
-.stats-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.75rem;
-}
-
-.stat-box {
-  flex: 0 0 auto;
-  min-width: 108px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  padding: 0.7rem 1.1rem;
-  border-radius: 4px;
-  text-align: center;
-  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.stat-box:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.stat-box:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.stat-num {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--accent);
-  line-height: 1.2;
-  font-variant-numeric: tabular-nums;
-}
-
-.stat-lbl {
-  font-family: var(--font-label);
-  font-size: 0.6rem;
-  color: var(--ink-3);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-}
 
 /* --------------------------------------------------------------------------
    6. Partners Bar
@@ -1258,7 +1208,6 @@ section {
 
 .facility-body { flex: 1; min-width: 0; }
 
-
 /* Stack the media above the text once a row gets too narrow to split */
 @media (max-width: 800px) {
   .facility-card { flex-direction: column; }
@@ -1303,7 +1252,6 @@ section {
   border-radius: 3px;
   padding: 5px;
 }
-
 
 @media (max-width: 620px) {
   .facility-collage { min-height: 150px; }
@@ -1355,7 +1303,6 @@ section {
   padding: 5px;
 }
 
-
 .facility-body {
   padding: 1.6rem;
   display: flex;
@@ -1397,14 +1344,12 @@ section {
   color: var(--ink-3);
 }
 
-
 /* --------------------------------------------------------------------------
    Clickable cards
-   Several cards are now anchors (stat tiles, research themes, highlights).
+   Several cards are now anchors (research themes, blog posts, highlights).
    They must not look like inline links, and they need a visible affordance
    so it is obvious they lead somewhere.
    -------------------------------------------------------------------------- */
-a.stat-box,
 a.theme-card,
 a.blog-card {
   color: inherit;
@@ -1413,15 +1358,8 @@ a.blog-card {
   cursor: pointer;
 }
 
-a.stat-box {
-  flex-direction: column;
-  justify-content: center;
-}
-
 a.theme-card,
 a.blog-card { flex-direction: column; }
-
-a.stat-box:hover .stat-num { color: var(--accent-hover); }
 
 /* "See related publications" / "Read the paper" */
 .card-readmore,
@@ -1447,8 +1385,7 @@ a.theme-card:hover .card-readmore i,
 a.blog-card:hover .blog-readmore i { transform: translateX(3px); }
 
 a.theme-card:focus-visible,
-a.blog-card:focus-visible,
-a.stat-box:focus-visible {
+a.blog-card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -1547,8 +1484,6 @@ a.stat-box:focus-visible {
 }
 
 .blog-meta i { color: var(--accent); }
-
-
 
 /* --------------------------------------------------------------------------
    Featured story + press coverage (Achievements page)
@@ -1931,7 +1866,6 @@ a.stat-box:focus-visible {
 @media (max-width: 900px) {
   .publications-section::before { opacity: 0.09; background-size: auto 320px; }
 }
-
 
 .pub-controls {
   background: var(--surface-2);
@@ -2546,7 +2480,6 @@ a.stat-box:focus-visible {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-
 
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
