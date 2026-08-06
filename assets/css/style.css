@@ -80,7 +80,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 132px;  /* clears the two-row sticky header */
+  scroll-padding-top: 176px;  /* clears the two-row sticky header (166px) */
   font-size: 16px;
 }
 
@@ -285,7 +285,7 @@ section {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.8rem;
 }
 
 /* Leaf + molecular ring mark; inherits the accent colour in both themes */
@@ -304,11 +304,11 @@ section {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  height: 74px;
+  height: 116px;
   transition: height var(--transition-normal);
 }
 
-.header-nav.scrolled .brand-bar-inner { height: 58px; }
+.header-nav.scrolled .brand-bar-inner { height: 88px; }
 
 /* Host-institution logo */
 .brand-inst {
@@ -323,15 +323,15 @@ section {
    To restore the official blue, point both rules at iitism_logo_full.png. */
 .brand-inst-mark {
   display: block;
-  height: 46px;
+  height: 82px;
   aspect-ratio: 725 / 169;
   background: url('../images/iitism_logo_onred.png') center / contain no-repeat;
   transition: height var(--transition-normal), opacity var(--transition-fast);
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
+  width: 74px;
+  height: 74px;
   flex-shrink: 0;
   color: var(--on-accent);
   transition: transform var(--transition-normal), width var(--transition-normal), height var(--transition-normal);
@@ -342,17 +342,17 @@ section {
 /* Cut-out at the centre of the leaf: fill it with the band colour */
 .brand-mark-core { fill: var(--accent); }
 
-.header-nav.scrolled .brand-mark { width: 40px; height: 40px; }
+.header-nav.scrolled .brand-mark { width: 60px; height: 60px; }
 
 .brand-text {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.22rem;
 }
 
 .brand-name {
   font-family: var(--font-brand);
-  font-size: 1.75rem;
+  font-size: 2.7rem;
   font-weight: 700;
   color: var(--on-accent);
   letter-spacing: 0.05em;
@@ -360,14 +360,14 @@ section {
   transition: color var(--transition-fast), font-size var(--transition-normal);
 }
 
-.header-nav.scrolled .brand-name { font-size: 1.5rem; }
+.header-nav.scrolled .brand-name { font-size: 2.15rem; }
 
 .brand-logo:hover .brand-name { color: #FFFFFF; }
 
 .brand-sub {
   font-family: var(--font-label);
   white-space: nowrap;
-  font-size: 0.6rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -2575,7 +2575,7 @@ a.blog-card:focus-visible {
 @media (max-width: 900px) {
   .nav-links { gap: 0.8rem; }
   .nav-link { font-size: 0.79rem; }
-  .brand-inst-mark { height: 38px; }
+  .brand-inst-mark { height: 64px; }
 }
 
 @media (max-width: 992px) {
@@ -2597,12 +2597,12 @@ a.blog-card:focus-visible {
   .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
 
   /* The full lockup is too wide for a phone; scale it right down */
-  .brand-bar-inner { height: 62px; gap: 0.75rem; }
-  .brand-inst-mark { height: 30px; }
-  .header-nav.scrolled .brand-bar-inner { height: 54px; }
-  .header-nav.scrolled .brand-inst-mark { height: 26px; }
-  .brand-mark { width: 34px; height: 34px; }
-  .brand-name { font-size: 1.3rem; }
+  .brand-bar-inner { height: 88px; gap: 0.75rem; }
+  .brand-inst-mark { height: 48px; }
+  .header-nav.scrolled .brand-bar-inner { height: 74px; }
+  .header-nav.scrolled .brand-inst-mark { height: 40px; }
+  .brand-mark { width: 50px; height: 50px; }
+  .brand-name { font-size: 1.85rem; }
 
   .nav-links {
     position: absolute;   /* anchored to the header, so height changes don't matter */
@@ -2676,7 +2676,7 @@ a.blog-card:focus-visible {
 @media (max-width: 560px) {
   /* Below this the strapline and the institution lockup can't share a row */
   .brand-sub { display: none; }
-  .brand-inst-mark { height: 26px; }
+  .brand-inst-mark { height: 38px; }
 
   .blog-grid { grid-template-columns: 1fr; }
   .hero-cta { width: 100%; }
