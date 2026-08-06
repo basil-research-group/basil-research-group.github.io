@@ -434,6 +434,7 @@ section {
   cursor: pointer;
 }
 
+
 /* --------------------------------------------------------------------------
    5. Hero
    -------------------------------------------------------------------------- */
@@ -443,6 +444,28 @@ section {
   background: var(--paper-2);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
+  position: relative;
+}
+
+/* Artwork sits centred behind the introduction, blurred and faded right back
+   so it reads as texture rather than a picture. Both edges are masked so it
+   never meets the section border hard. Opacity is kept low enough that the
+   body text still clears AA contrast over the darkest part of the artwork. */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../images/banner_geoarch_venn.png') no-repeat center center;
+  background-size: auto 128%;
+  opacity: 0.14;
+  filter: blur(3px) saturate(0.85);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 16%, #000 84%, transparent 100%);
+}
+
+@media (max-width: 900px) {
+  .hero-section::before { opacity: 0.09; background-size: auto 105%; }
 }
 
 /* Single column: the site is about the group, so there is no portrait
@@ -1851,6 +1874,36 @@ a.stat-box:focus-visible {
 .publications-section {
   background: var(--paper);
   border-bottom: 1px solid var(--line);
+}
+
+
+/* Word cloud above the publication list - decorative summary of the titles */
+.pub-wordcloud {
+  margin: 0 auto 2rem;
+  max-width: 620px;
+  text-align: center;
+}
+
+.pub-wordcloud img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.pub-wordcloud figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+@media (max-width: 560px) {
+  .pub-wordcloud { max-width: 100%; }
+  .pub-wordcloud img { max-height: 210px; }
 }
 
 .pub-controls {
