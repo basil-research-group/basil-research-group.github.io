@@ -8,11 +8,11 @@
 
    The publication DATA lives in publications.js - edit that, not this.
    Section index:
-     1. Setup & constants         5. Scroll reveal animations
-     2. Page initialiser          6. Derived counts (filter labels, tiles)
-     3. Mobile menu               7. Animated number counters
-     4. Header, progress, top     8. Gallery lightbox
-                                  9. Publications search & filter
+     1. Setup & constants         6. Derived counts (filter labels, tiles)
+     2. Page initialiser          7. Animated number counters
+     3. Mobile menu               8. Gallery lightbox
+     4. Header, progress, top     9. Publications search & filter
+     5. Scroll reveal animations 10. PDF requests from Publications
    ========================================================================== */
 
 // --------------------------------------------------------------------------
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initGalleryLightbox();
   initPublicationsHub();
+  initPdfRequest();
 });
 
 // --------------------------------------------------------------------------
@@ -559,7 +560,7 @@ function renderPublicationsList(container, items, query) {
           <a href="https://doi.org/${escapeHtml(item.doi)}" target="_blank" rel="noopener" class="btn-pdf-request">
             <i class="fa-solid fa-up-right-from-square"></i> View Article
           </a>` : ''}
-          <a href="mailto:deepak.geo@outlook.com?subject=PDF Request: ${encodeURIComponent(item.title)}" class="btn-pdf-request">
+          <a href="contact.html?paper=${encodeURIComponent(item.title)}#request-pdf" class="btn-pdf-request">
             <i class="fa-solid fa-file-pdf"></i> Request PDF
           </a>
         </div>
@@ -635,6 +636,42 @@ function buildCitation(item) {
   if (item.journal) bits.push(item.journal + (item.details ? ` ${item.details}` : '') + '.');
   if (item.doi) bits.push(`https://doi.org/${item.doi}`);
   return bits.join(' ');
+}
+
+// --------------------------------------------------------------------------
+// 10. PDF requests arriving from the Publications page
+//     The "Request PDF" button links to contact.html?paper=<title>#request-pdf.
+//     Here we name the paper on the contact card and put its title into the
+//     subject line of both email addresses, so the visitor only has to click.
+// --------------------------------------------------------------------------
+function initPdfRequest() {
+  const note = document.getElementById('pdf-request-note');
+  if (!note) return;
+
+  const paper = new URLSearchParams(window.location.search).get('paper');
+  if (!paper) return;
+
+  const title = paper.trim().slice(0, 300);
+
+  note.innerHTML =
+    `<i class="fa-solid fa-file-pdf"></i> You asked for a PDF of ` +
+    `&ldquo;<strong>${escapeHtml(title)}</strong>&rdquo;. ` +
+    `The subject line is filled in for you &mdash; just pick an address above.`;
+  note.hidden = false;
+
+  const subject = encodeURIComponent(`PDF Request: ${title}`);
+  document.querySelectorAll('.contact-mail').forEach(link => {
+    const address = link.getAttribute('href').split('?')[0];
+    link.setAttribute('href', `${address}?subject=${subject}`);
+  });
+
+  // The browser has already jumped to #request-pdf; flash it so the visitor
+  // sees which part of the page answers the button they pressed.
+  const target = document.getElementById('request-pdf');
+  if (target && !PREFERS_REDUCED_MOTION) {
+    target.classList.add('is-flagged');
+    setTimeout(() => target.classList.remove('is-flagged'), 2600);
+  }
 }
 
 function escapeHtml(text) {

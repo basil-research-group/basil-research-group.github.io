@@ -2251,7 +2251,35 @@ a.stat-box:focus-visible {
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
+  border-radius: 6px;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
 }
+
+/* Someone arrived here from a "Request PDF" button on the Publications page.
+   A brief tint points at the answer instead of dropping them on a wall of
+   contact details; app.js removes the class after a couple of seconds. */
+.contact-item.is-flagged {
+  background: var(--accent-tint);
+  box-shadow: 0 0 0 0.75rem var(--accent-tint);
+}
+
+.pdf-request-note {
+  margin-top: 0.85rem;
+  padding: 0.7rem 0.85rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 0 5px 5px 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.pdf-request-note i {
+  color: var(--accent);
+  margin-right: 0.35rem;
+}
+
+.pdf-request-note strong { color: var(--ink); }
 
 .contact-icon {
   width: 42px;

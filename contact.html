@@ -107,13 +107,17 @@
 
       <div class="contact-grid">
         <div class="contact-card" data-reveal="left">
-          <div class="contact-item">
+          <!-- The "Request PDF" buttons on the Publications page link here.
+               When they do, the paper title arrives as ?paper=... and the
+               note below is filled in automatically (see app.js). -->
+          <div class="contact-item" id="request-pdf">
             <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
             <div class="contact-details">
               <h4>Email Address</h4>
-              <p>Please contact me if you need a PDF of any of my articles:</p>
-              <p><a href="mailto:deepak.geo@outlook.com">deepak.geo@outlook.com</a></p>
-              <p><a href="mailto:deepakiiserk@gmail.com">deepakiiserk@gmail.com</a></p>
+              <p>Please write to us if you would like a PDF of any of our articles:</p>
+              <p><a class="contact-mail" href="mailto:deepak.geo@outlook.com">deepak.geo@outlook.com</a></p>
+              <p><a class="contact-mail" href="mailto:deepakiiserk@gmail.com">deepakiiserk@gmail.com</a></p>
+              <p class="pdf-request-note" id="pdf-request-note" hidden></p>
             </div>
           </div>
 
