@@ -365,7 +365,8 @@ function initCounters() {
 // 9. Gallery Lightbox
 // --------------------------------------------------------------------------
 function initGalleryLightbox() {
-  const cards = Array.from(document.querySelectorAll('.gallery-card'));
+  // Gallery photos and press clippings both use this viewer
+  const cards = Array.from(document.querySelectorAll('.gallery-card, .press-card'));
   const box = document.getElementById('lightbox');
   const img = document.getElementById('lightbox-img');
   const counter = document.getElementById('lightbox-counter');
@@ -405,7 +406,7 @@ function initGalleryLightbox() {
   cards.forEach((card, i) => {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', `Open gallery photo ${i + 1} of ${cards.length}`);
+    card.setAttribute('aria-label', `Open image ${i + 1} of ${cards.length} at full size`);
 
     card.addEventListener('click', () => open(i));
     card.addEventListener('keydown', (e) => {
