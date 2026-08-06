@@ -635,7 +635,7 @@ section {
 /* NB: research.html also has a section called .about-section (the research
    themes). This block is the home page's own, hence the separate name. */
 .group-about {
-  background: var(--paper);
+  background: var(--paper-2);
   border-bottom: 1px solid var(--line);
 }
 
@@ -745,7 +745,7 @@ section {
 }
 
 .news-section {
-  background: var(--paper-2);
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
 }
 
