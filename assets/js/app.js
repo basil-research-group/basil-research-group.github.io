@@ -643,9 +643,15 @@ function initVisitorCount() {
       el.innerHTML = `<i class="fa-regular fa-eye"></i> ${visitors} ${plural}`;
       el.hidden = false;
     })
-    .catch(() => {
-      // Setting not enabled, or GoatCounter unreachable - leave the footer as
-      // it was rather than showing a broken or zero figure.
+    .catch(err => {
+      // Leave the footer as it was rather than showing a broken figure, but
+      // say why in the console: privacy blockers (uBlock, Brave, some DNS
+      // filters) block goatcounter.com, which looks identical to a bug.
+      console.warn(
+        'BASIL: visitor count unavailable (' + err + '). ' +
+        'If you use an ad or tracker blocker it is probably blocking ' +
+        'basilrg.goatcounter.com.'
+      );
     });
 }
 
