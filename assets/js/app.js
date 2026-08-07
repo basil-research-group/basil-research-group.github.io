@@ -614,51 +614,38 @@ function initPdfRequest() {
 
 // --------------------------------------------------------------------------
 // 11. Visitor counter (footer)
-//     GitHub Pages serves static files and cannot count anything itself, so
-//     the tally is kept by counterapi.dev - a free, no-signup counter.
+//     The number comes from GoatCounter, the same service that records the
+//     statistics dashboard at https://basilrg.goatcounter.com - so the figure
+//     on the page and the figure in the dashboard are the same figure.
 //
-//     TO RESET OR MOVE THE COUNTER: change COUNTER_KEY below. Each namespace
-//     and key pair is a separate tally, and a new one starts at zero.
-//     TO REMOVE IT: delete the <p class="visitor-count"> line from the footer
-//     of every .html page; this function then does nothing.
+//     This needs "Allow adding visitor counts on your website" switched on in
+//     the GoatCounter site settings; without it the endpoint returns 403 and
+//     the footer simply shows nothing.
+//
+//     GoatCounter caches this response for up to four hours, so a new visit
+//     will not appear immediately.
 // --------------------------------------------------------------------------
-const COUNTER_KEY = 'https://api.counterapi.dev/v1/basil-research-group/site-visits';
+const COUNTER_URL = 'https://basilrg.goatcounter.com/counter/TOTAL.json';
 
 function initVisitorCount() {
   const el = document.getElementById('visitor-count');
   if (!el) return;
 
-  // Local previews would otherwise inflate the count while you are editing
-  const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
-
-  // Count a person once per browser session, not once per page they open,
-  // so clicking through the nav does not register eight visits.
-  let counted = false;
-  try {
-    counted = window.sessionStorage.getItem('basil-counted') === '1';
-  } catch (err) {
-    counted = false;      // private browsing can block sessionStorage
-  }
-
-  const url = (counted || isLocal) ? `${COUNTER_KEY}/` : `${COUNTER_KEY}/up`;
-
-  fetch(url, { cache: 'no-store' })
+  fetch(COUNTER_URL, { cache: 'no-store' })
     .then(response => (response.ok ? response.json() : Promise.reject(response.status)))
     .then(data => {
-      if (typeof data.count !== 'number') return;
+      // count_unique is people; count is pageviews. Both arrive as strings
+      // already grouped ("1,234"), so they are printed as given.
+      const visitors = data.count_unique || data.count;
+      if (!visitors) return;
 
-      if (!counted && !isLocal) {
-        try { window.sessionStorage.setItem('basil-counted', '1'); } catch (err) { /* ignore */ }
-      }
-
-      const label = data.count === 1 ? 'visit' : 'visits';
-      el.innerHTML =
-        `<i class="fa-regular fa-eye"></i> ${data.count.toLocaleString('en-IN')} ${label}`;
+      const plural = String(visitors).replace(/[^0-9]/g, '') === '1' ? 'visitor' : 'visitors';
+      el.innerHTML = `<i class="fa-regular fa-eye"></i> ${visitors} ${plural}`;
       el.hidden = false;
     })
     .catch(() => {
-      // Counter unreachable - leave the footer as it was rather than showing
-      // a broken or zero figure.
+      // Setting not enabled, or GoatCounter unreachable - leave the footer as
+      // it was rather than showing a broken or zero figure.
     });
 }
 
