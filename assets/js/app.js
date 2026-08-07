@@ -614,58 +614,64 @@ function initPdfRequest() {
 
 // --------------------------------------------------------------------------
 // 11. Visitor counter (footer)
-//     Deliberately NOT GoatCounter. GoatCounter records the private
-//     dashboard at basilrg.goatcounter.com, but its domain sits on the
-//     standard tracker blocklists, so for any reader running uBlock, Brave
-//     shields or a filtering DNS the request never completes and the footer
-//     shows nothing. This tally comes from counterapi.dev instead, which
-//     those lists leave alone.
+//     Two sources, tried in order, because each fails in a different way:
 //
-//     The two numbers are therefore different numbers: the dashboard is the
-//     accurate one, this is the one everybody can actually see.
+//     GoatCounter is the accurate number - it is the same tally as the
+//     private dashboard at basilrg.goatcounter.com - but its domain is on
+//     the standard tracker blocklists, so readers running uBlock, Brave
+//     shields or a filtering DNS never reach it.
 //
-//     TO RESET IT: change COUNTER_KEY. Each namespace/key pair is its own
-//     tally and a new one starts at zero.
+//     counterapi.dev is reachable for those readers, but it is a free
+//     service that intermittently answers 400 when its database runs out of
+//     connections, so it cannot be trusted on its own.
+//
+//     Whichever answers first is shown. A reader with a blocker may
+//     therefore see a different figure from everyone else; that is the
+//     price of the counter appearing at all.
 // --------------------------------------------------------------------------
-const COUNTER_KEY = 'https://api.counterapi.dev/v1/basil-research-group/site-visits';
+const COUNTER_SOURCES = [
+  {
+    url: 'https://basilrg.goatcounter.com/counter/TOTAL.json',
+    // GoatCounter returns strings, already grouped: {"count_unique":"1,234"}
+    read: data => data.count_unique || data.count,
+    noun: 'visitor'
+  },
+  {
+    url: 'https://api.counterapi.dev/v1/basil-research-group/site-visits/',
+    read: data => (typeof data.count === 'number' ? data.count.toLocaleString('en-IN') : null),
+    noun: 'visit'
+  }
+];
 
 function initVisitorCount() {
   const el = document.getElementById('visitor-count');
   if (!el) return;
 
-  // Local previews would otherwise inflate the count while you are editing
-  const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+  const attempt = (index) => {
+    if (index >= COUNTER_SOURCES.length) {
+      console.warn('BASIL: visitor count unavailable - every source failed.');
+      return;
+    }
 
-  // Count a person once per browser session, not once per page they open,
-  // so clicking through the nav does not register eight visits.
-  let counted = false;
-  try {
-    counted = window.sessionStorage.getItem('basil-counted') === '1';
-  } catch (err) {
-    counted = false;      // private browsing can block sessionStorage
-  }
+    const source = COUNTER_SOURCES[index];
 
-  const url = (counted || isLocal) ? `${COUNTER_KEY}/` : `${COUNTER_KEY}/up`;
+    fetch(source.url, { cache: 'no-store' })
+      .then(response => (response.ok ? response.json() : Promise.reject('HTTP ' + response.status)))
+      .then(data => {
+        const value = source.read(data);
+        if (!value) return Promise.reject('no count in response');
 
-  fetch(url, { cache: 'no-store' })
-    .then(response => (response.ok ? response.json() : Promise.reject(response.status)))
-    .then(data => {
-      if (typeof data.count !== 'number') return;
+        const plural = String(value).replace(/[^0-9]/g, '') === '1' ? '' : 's';
+        el.innerHTML = `<i class="fa-regular fa-eye"></i> ${value} ${source.noun}${plural}`;
+        el.hidden = false;
+      })
+      .catch(err => {
+        console.warn('BASIL: ' + source.url + ' failed (' + err + '), trying next source.');
+        attempt(index + 1);
+      });
+  };
 
-      if (!counted && !isLocal) {
-        try { window.sessionStorage.setItem('basil-counted', '1'); } catch (err) { /* ignore */ }
-      }
-
-      const label = data.count === 1 ? 'visit' : 'visits';
-      el.innerHTML =
-        `<i class="fa-regular fa-eye"></i> ${data.count.toLocaleString('en-IN')} ${label}`;
-      el.hidden = false;
-    })
-    .catch(err => {
-      // Leave the footer as it was rather than showing a broken figure, but
-      // say why, so a blocked request is not mistaken for a bug.
-      console.warn('BASIL: visitor count unavailable (' + err + ').');
-    });
+  attempt(0);
 }
 
 function escapeHtml(text) {
