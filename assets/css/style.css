@@ -1060,6 +1060,18 @@ section {
 /* Host / funding institution for the project. Sized by height so the wide
    MPI lockup and the near-square IISER emblem sit at the same optical
    weight, and muted so it reads as a credit rather than a headline. */
+/* Funding body, for projects that carry no partner logo. Sits where the
+   logo would, so cards with and without one end the same way. */
+.project-funder {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-label);
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
 .project-logo {
   margin-top: auto;
   padding-top: 1rem;
@@ -1091,6 +1103,31 @@ section {
 /* Flex, not grid: with grid, justify-content centres the whole track group,
    so a section holding one member still sat in the left-hand track with
    empty tracks beside it. Flex wrapping centres the cards themselves. */
+/* Group photograph above the member grid. Capped so it stays a portrait of
+   the group rather than a banner, and never wider than the grid below it. */
+.group-photo {
+  margin: 0 auto 2.75rem;
+  max-width: 900px;
+}
+
+.group-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.group-photo figcaption {
+  margin-top: 0.7rem;
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
 .team-grid {
   display: flex;
   flex-wrap: wrap;

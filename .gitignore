@@ -40,3 +40,8 @@ venv/
 assets/images/wix_downloaded/
 assets/images/wix_gallery/
 assets/images/wix_originals/
+
+# Raw camera/WhatsApp uploads. The site uses the resized copies in
+# assets/images/ - these are kept locally only.
+assets/images/originals/
+Pictures - Shortcut.lnk
