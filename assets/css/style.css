@@ -1119,15 +1119,6 @@ section {
   background: var(--surface);
 }
 
-.group-photo figcaption {
-  margin-top: 0.7rem;
-  text-align: center;
-  font-family: var(--font-label);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-3);
-}
-
 .team-grid {
   display: flex;
   flex-wrap: wrap;
