@@ -1331,6 +1331,10 @@ section {
   flex: 0 0 44%;
   max-width: 480px;
   min-height: 230px;
+  /* Without a cap the image's own proportions set the card height, and a
+     portrait photo of a tall instrument made a card most of a screen high.
+     object-fit: contain keeps the whole instrument inside this box. */
+  max-height: 290px;
   background: var(--paper-2);
   border-bottom: none;
   border-right: 1px solid var(--line);
@@ -1348,6 +1352,7 @@ section {
     flex: none;
     max-width: none;
     min-height: 0;
+    max-height: 260px;
     border-right: none;
     border-bottom: 1px solid var(--line);
   }
