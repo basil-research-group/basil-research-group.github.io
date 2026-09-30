@@ -241,11 +241,12 @@ provider add a `CNAME` record pointing it to `YOUR-USERNAME.github.io`.
 - **Images aren't optimised automatically.** Resize before adding: about
   1800px on the long edge is more than enough for full-width photos.
 - **Bump the cache stamp after editing CSS or JS.** Every page links the
-  stylesheet as `assets/css/style.css?v=20260930`, and the two scripts the
+  stylesheet as `assets/css/style.css?v=20260930-2`, and the two scripts the
   same way. GitHub Pages tells browsers to keep those files for ten minutes,
   so without a new number a visitor can keep seeing the old design after you
   publish. Change the number in **all eight** `.html` files — today's date in
-  `YYYYMMDD` is a good value. HTML and images need no stamp.
+  `YYYYMMDD` works, with `-2`, `-3` and so on for a second change the same
+  day. HTML and images need no stamp.
 - **Keep the quote marks and commas** in `publications.js`. A missing comma
   stops the whole list from rendering. If the publication list ever appears
   blank, open the browser console (F12) — a syntax error will be named there.
